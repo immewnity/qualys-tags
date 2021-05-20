@@ -134,7 +134,7 @@ if (snmp.contains("KONICA MINOLTA bizhub")) return true;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("URL=/wcd/js_error.xml")) return true;
+if (default_web_page.contains("URL=/wcd/js_error.xml") || default_web_page.contains("/wcd/index.html")) return true;
 
 
 
@@ -149,6 +149,10 @@ if (snmp.contains("KYOCERA Document Solutions Printing System")) return true;
 // Search FTP response
 ftp_response = asset.resultsForQid(27113L);
 if (ftp_response.contains("TASKalfa")) return true;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("/startwlm/Start_Wlm.htm") || default_web_page.contains("KYOCERA MITA Corporation")) return true;
 
 
 
