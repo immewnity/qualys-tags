@@ -1,2 +1,2 @@
-# Groovy scripts for Qualys
-This repository contains Groovy scripts for use in Qualys tagging. Pull requests welcome!
+# Qualys tags
+This repository contains Groovy scripts and other tag types for use in Qualys tagging. Pull requests welcome!
