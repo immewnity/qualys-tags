@@ -1,7 +1,7 @@
 /*
  * Groovy scripts for use in Qualys tags
  * 
- * UPS (Network Attached Storage)
+ * UPS (Uninterruptible Power Supply) and PDU (Power Distribution Unit)
  * 
  * Disclaimer: Scripts are not guaranteed to be perfect - false positive and false negative results are possible. Pull requests to improve the scripts are welcomed.
  * 
@@ -42,6 +42,16 @@ if (http_method.contains("/home.htm") && http_method.contains("See Other")) retu
 // Search the MAC address
 ssl_cert = asset.resultsForQid(43007L);
 if (ssl_cert.contains("AMERICAN POWER CONVERSION CORP")) return true;
+
+
+
+/* CyberPower */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search FTP response
+ftp_response = asset.resultsForQid(27113L);
+if (ftp_response.contains("CyberPower FTP Service")) return true;
 
 
 
