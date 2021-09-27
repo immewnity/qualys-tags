@@ -105,15 +105,23 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Synology&nbsp;RackStation") || default_web_page.contains("SYNO.Core.Desktop") || default_web_page.contains("RackStation provides a full-featured network attached storage")) return true;
+if (default_web_page.contains("Synology") || default_web_page.contains("SYNO.Core.Desktop") || default_web_page.contains("RackStation")) return true;
+
+// Search the redirected web page
+default_web_page = asset.resultsForQid(13910L);
+if (default_web_page.contains("Synology") || default_web_page.contains("SYNO.Core.Desktop") || default_web_page.contains("RackStation")) return true;
 
 // Search SSH banner
 ssh_banner = asset.resultsForQid(38050L);
 if (ssh_banner.contains("SSH-2.0-OpenSSH_6.8p1-hpn14v6")) return true;
 
+// Search HTTP header
+http_header = asset.resultsForQid(48118L);
+if (http_header.contains("synology")) return true;
+
 // Search SSL cert
 ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("organizationalUnitName FTP Team") && ssl_cert.contains("organizationName Synology")) return true;
+if (ssl_cert.contains("Synology")) return true;
 
 
 
