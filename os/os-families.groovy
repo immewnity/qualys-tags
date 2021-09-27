@@ -11,6 +11,14 @@
 
 
 
+/* CentOS */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([256546,256558,256581,256604,256616,256622,256645,256716,256718,256734,256736,256739,256773,256782,256796,256828,256897,256904,256916,256934,256965,257035,257047,257070,257073,257092])) return true;
+
+
+
 /* macOS */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -41,6 +49,38 @@ if (webpage.contains("/mana/mana/menu.mana")) return true;
 
 
 
+/* Oracle Linux */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// YUM repos
+yum_repos = asset.resultsForQid(45294L);
+if (yum_repos.contains("Oracle Linux") || yum_repos.contains("Oracle Enterprise Linux")) return true;
+
+if (asset.hasAnyVuln([159318,159338,159258,159310,159308,159329,159000,159112,159141,159179,159276,159304,159306,159315,159328,159340,158950,158966,158986,159011,159018,159026,159045,159096,159113,159132,159157,159236,159271,159263,159251,159257])) return true;
+
+// Unix services
+unix_services = asset.resultsForQid(45294L);
+if (unix_services.contains("ol-consolebaud.service")) return true;
+
+
+
+/* Red Hat */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Detect Linux version
+linux_version = asset.resultsForQid(45353L);
+if (linux_version.contains("redhat.com")) return true;
+
+// YUM repos
+yum_repos = asset.resultsForQid(45294L);
+if (yum_repos.contains("Red Hat Enterprise Linux") || yum_repos.contains("Managed by (rhsm) subscription-manager")) return true;
+
+if (asset.hasAnyVuln([239506,239541,239467,239535,239540,375544,239539,239546,239524,239534,239403,239339,239379,239202])) return true;
+
+
+
 /* Solaris */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -54,6 +94,30 @@ if (telnet.contains("SunOS")) return true;
 // SNMP info
 snmp = asset.resultsForQid(78000L);
 if (snmp.contains("SunOS")) return true;
+
+
+
+/* Ubuntu */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// /etc/issue
+etc_issue = asset.resultsForQid(45046L);
+if (etc_issue.contains("Ubuntu")) return true;
+
+// Detect Linux version
+linux_version = asset.resultsForQid(45353L);
+if (linux_version.contains("Ubuntu")) return true;
+
+// SMTP banner
+smtp_banner = asset.resultsForQid(74042L);
+if (smtp_banner.contains("ESMTP Postfix (Ubuntu)")) return true;
+
+// APT sources.list
+sources_list = asset.resultsForQid(45293L);
+if (sources_list.contains("from the Ubuntu security team")) return true;
+
+if (asset.hasAnyVuln([105617,198438,105568,105715,198434])) return true;
 
 
 
