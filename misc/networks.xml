@@ -1,0 +1,31 @@
+<!--
+Groovy scripts for use in Qualys tags
+
+Networks (for use with the Networks feature described in https://success.qualys.com/discussions/s/article/000006210)
+
+Use "IP Address In Range(s) + Network(s)" for these.
+
+Disclaimer: Scripts are not guaranteed to be perfect - false positive and false negative results are possible. Pull requests to improve the scripts are welcomed.
+
+(c) Matthew Verive
+Licensed under the MIT License
+-->
+
+
+
+<!-- Global Default Network -->
+
+<RANGES><RANGE network="6b48277c-0742-61c1-82bb-cac0f9c4094a" type="IP">0.0.0.0-255.255.255.255</RANGE></RANGES>
+
+
+
+<!-- Global EC2 Network -->
+
+<!-- I don't know the UUID for this one
+<RANGES><RANGE network="6b48277c-0742-61c1-82bb-cac0f9c4094a" type="IP">0.0.0.0-255.255.255.255</RANGE></RANGES> -->
+
+
+
+-- Global Azure Network -->
+
+<RANGES><RANGE network="28d51ebb-882f-4eb5-a074-b37cb83d42e3" type="IP">0.0.0.0-255.255.255.255</RANGE></RANGES>
