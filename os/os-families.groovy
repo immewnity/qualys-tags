@@ -10,6 +10,21 @@
  */
 
 
+/* Amazon Linux */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Detect Linux version
+linux_version = asset.resultsForQid(45353L);
+if (linux_version.contains("amzn2")) return true;
+
+// YUM repos
+yum_repos = asset.resultsForQid(45294L);
+if (yum_repos.contains("amzn2-core") || yum_repos.contains("Amazon Linux") || yum_repos.contains("managed with amazon-linux-extras")) return true;
+
+if (asset.hasAnyVuln([352855])) return true;
+
+
 
 /* CentOS */
 
@@ -28,6 +43,22 @@ if (asset.hasAnyVuln([43566,43110,375113,45072,45238,374668,373187,374335,375114
 // VNC Banner
 vnc_banner = asset.resultsForQid(38062L);
 if (vnc_banner.contains("RFB 003.889")) return true;
+
+
+
+/* OpenBSD */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([370434])) return true;
+
+// Unix server info
+unix_info = asset.resultsForQid(45037L);
+if (unix_info.contains("OpenBSD")) return true;
+
+// Syslog
+syslog = asset.resultsForQid(45069L);
+if (syslog.contains("OpenBSD")) return true;
 
 
 
