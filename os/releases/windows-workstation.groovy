@@ -64,7 +64,6 @@ if(asset.hasAnyVuln([105998,105815,105817,105871,105718,105733,105753,105784,105
 
 
 /* Windows 11 */
-// Untested; as of writing, Windows 11 has not yet been officially released
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
