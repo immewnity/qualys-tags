@@ -99,7 +99,6 @@ if (win_prod_type.contains("ProductType = ServerNT") && win_prod_type.contains("
 
 
 /* Windows Server 2022 */
-// Untested
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
