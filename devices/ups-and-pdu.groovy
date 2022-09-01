@@ -51,7 +51,11 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search FTP response
 ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("CyberPower FTP Service")) return true;
+if (ftp_response.contains("CyberPower FTP")) return true;
+
+// Search plain text auth
+ptauth = asset.resultsForQid(86728L);
+if (ptauth.contains("login_pass.cgi")) return true;
 
 
 
