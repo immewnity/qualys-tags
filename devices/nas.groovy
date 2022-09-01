@@ -47,6 +47,20 @@ if (shared_folders.contains("Lenovo ix4") || shared_folders.contains("Lenovo ix2
 
 
 
+/* iXsystems / TrueNAS */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the redirected web page
+default_web_page = asset.resultsForQid(13910L);
+if (default_web_page.contains("TrueNAS") || default_web_page.contains("ix-blue") || default_web_page.contains("ix-blue")) return true;
+
+// Search SSL cert
+ssl_cert = asset.resultsForQid(86002L);
+if (ssl_cert.contains("iXsystems") || ssl_cert.contains("ixsystems.com")) return true;
+
+
+
 /* Netgear */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -87,15 +101,19 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("user name and password to sign in to Seagate Central") || default_web_page.contains("application_window.title_bar.logo.tooltip")) return true;
+if (default_web_page.contains("sign in to Seagate Central")) return true;
 
-// Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("Welcome to Seagate Central")) return true;
+// Search the FTP banner
+ftp_banner = asset.resultsForQid(27113L);
+if (ftp_banner.contains("Seagate Central")) return true;
 
 // Search SSL cert
 ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Seagate Central Shared Storage") || ssl_cert.contains("fadsjkl@fadsjl.com")) return true;
+if (ssl_cert.contains("Seagate Central")) return true;
+
+// Search NetBIOS
+netbios = asset.resultsForQid(70030L);
+if (netbios.contains("Seagate Central")) return true;
 
 
 
