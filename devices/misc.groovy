@@ -21,6 +21,32 @@ if (ssl_cert.contains("Aiphone") && ssl_cert.contains("IS-System")) return true;
 
 
 
+/* BrightSign digital signage */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasTag("Cloud Agent")) return false;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("Diagnostic Web Server")) return true;
+
+
+
+/* Canon document scanner */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the SSL cert
+ssl_cert = asset.resultsForQid(86002L);
+if (ssl_cert.contains("Canon USA") && ssl_cert.contains("ICS")) return true;
+
+// Search the web page
+default_web = asset.resultsForQid(12230L);
+if (default_web.contains("chorin-webapp")) return true;
+
+
+
 /* Dell iDRAC */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -183,6 +209,22 @@ if (ssh_banner.contains("Raspbian")) return true;
 
 
 
+/* RMG/Symon/Korbyt digital signage */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasTag("Cloud Agent")) return false;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("LogoSymon") || default_web_page.contains("SDA Login")) return true;
+
+// Search the redirected web page
+default_web_page = asset.resultsForQid(13910L);
+if (default_web_page.contains("LogoSymon") || default_web_page.contains("SDA Login")) return true;
+
+
+
 /* RoomWizard (Steelcase/PolyVision) */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -194,6 +236,20 @@ if (default_web_page.contains("RoomHomepage")) return true;
 // Search the redirected web page
 redirected_web_page = asset.resultsForQid(13910L);
 if (redirected_web_page.contains("RoomWizard setup")) return true;
+
+
+
+/* Scan2Net document scanner */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the SSL cert
+ssl_cert = asset.resultsForQid(86002L);
+if (ssl_cert.contains("Scan2Net") || ssl_cert.contains("imageaccess.de") || ssl_cert.contains("Scan2net") || ssl_cert.contains("Image Access GmbH")) return true;
+
+// Search the admin interface
+admin = asset.resultsForQid(48144L);
+if (admin.contains("Enhanced Scanning Technology")) return true;
 
 
 
