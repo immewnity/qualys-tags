@@ -29,13 +29,35 @@ if (ssl_cert.contains("Accops Technologies") || ssl_cert.contains("accops.com"))
 
 
 
+/* Apple */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("AirTunes")) return true;
+
+// Search the web server version
+web_server = asset.resultsForQid(86000L);
+if (web_server.contains("AirTunes")) return true;
+
+// Search the web server pipelining
+pipelining = asset.resultsForQid(86565L);
+if (pipelining.contains("AirTunes")) return true;
+
+// Search the HTTP response method
+http_response = asset.resultsForQid(48118L);
+if (http_response.contains("AirTunes")) return true;
+
+
+
 /* Arista */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page after following redirects
 default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("Arista Command API")) return true;
+if (default_web_page.contains("Arista Command API") || default_web_page.contains("<title>Arista</title>")) return true;
 
 // Search the HTTP response
 http_response = asset.resultsForQid(48118L);
@@ -51,11 +73,11 @@ if (asset.hasAnyVuln([45274])) return true;
 
 // Search the default web page after following redirects
 default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("arubanetworks") || default_web_page.contains("Aruba Networks") || default_web_page.contains("arubalp=") || default_web_page.contains("/nextgen/ui/index")) return true;
+if (default_web_page.contains("arubanetworks") || default_web_page.contains("Aruba Networks") || default_web_page.contains("arubalp=") || default_web_page.contains("/nextgen/ui/index") || default_web_page.contains("Management by Central. No UI access.")) return true;
 
 // Search the SSL cert
 ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Aruba Networks")) return true;
+if (ssl_cert.contains("Aruba Networks") || (ssl_cert.contains("Aruba") && ssl_cert.contains("HPE") && ssl_cert.contains("Roseville"))) return true;
 
 // SNMP data
 snmp = asset.resultsForQid(78000L);
@@ -67,7 +89,15 @@ if (telnet.contains("Aruba ")) return true;
 
 // MAC address
 mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("SNMP 10:4F:58:")) return true;
+if (mac_addr.contains("10:4F:58:")) return true;
+
+// SSH banner
+ssh = asset.resultsForQid(43007L);
+if (ssh.contains("SSH-2.0-Mocana SSH 6.3")) return true;
+
+// HTTP unavailable
+unavail = asset.resultsForQid(86383L);
+if (unavail.contains("available only on Master IAP") || unavail.contains("arubanetworks")) return true;
 
 
 
@@ -92,8 +122,14 @@ http_response = asset.resultsForQid(86002L);
 if (http_response.contains("Avaya Media Server")) return true;
 
 // Search the IMAP message
-imap = asset.resultsForQid(50010);
+imap = asset.resultsForQid(50010L);
 if (imap.contains("CallPilot")) return true;
+
+// Search the SMTP banner
+smtp = asset.resultsForQid(74042L);
+if (smtp.contains("IP Office Voicemail Pro")) return true;
+
+
 
 /* Axway */
 
@@ -173,25 +209,45 @@ if (ike_service.contains("CheckPoint")) return true;
 
 
 
-/* Cisco */
+/* Cisco (excludes softphones) */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
+if (asset.hasAnyVuln([45306])) return false;
+
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Cisco Connection Online") || default_web_page.contains("Cisco Codec:") || default_web_page.contains("Server: cisco-IOS") || default_web_page.contains("Cisco Systems") || default_web_page.contains("url ='/webui';window.location.href=url") || default_web_page.contains("icon_styles_ciscologo") || default_web_page.contains("and Cisco Systems are registered trademarks or trademarks of Cisco Systems") || default_web_page.contains("Cisco Unified Contact Center") || default_web_page.contains("ciscologo.gif") || default_web_page.contains("governing Cisco cryptographic products") || default_web_page.contains("default page when just a URL is entered")) return true;
+// Search the pipelining
+pipelining = asset.resultsForQid(86565L);
+// Search the IP phone info
+ip_phone = asset.resultsForQid(86565L);
+
+if (default_web_page.contains("Cisco Unified IP Phone Cisco Communicator")) return false;
+if (pipelining.contains("Cisco Unified IP Phone Cisco Communicator")) return false;
+if (ip_phone.contains("Cisco Unified IP Phone Cisco Communicator")) return false;
+
+if (pipelining.contains("/CGI/Java/Serviceability?adapter=device.statistics.device") || default_web_page.contains("Cisco IP Phone")) return true;
+if (default_web_page.contains("/CGI/Java/Serviceability?adapter=device.statistics.device") || default_web_page.contains("Cisco IP Phone")) return true;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("Cisco Connection Online") || default_web_page.contains("Cisco Codec:") || default_web_page.contains("Server: cisco-IOS") || default_web_page.contains("Cisco Systems") || default_web_page.contains("url ='/webui';window.location.href=url") || default_web_page.contains("icon_styles_ciscologo") || default_web_page.contains("and Cisco Systems are registered trademarks or trademarks of Cisco Systems") || default_web_page.contains("Cisco Unified Contact Center") || default_web_page.contains("ciscologo.gif") || default_web_page.contains("governing Cisco cryptographic products") || default_web_page.contains("default page when just a URL is entered") || default_web_page.contains("level 15 access")) return true;
 
 // Search the default redirected web page
 default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("Cisco Connection Online") || default_web_page.contains("Cisco Codec:") || default_web_page.contains("Server: cisco-IOS") || default_web_page.contains("Cisco Systems") || default_web_page.contains("url ='/webui';window.location.href=url") || default_web_page.contains("icon_styles_ciscologo") || default_web_page.contains("and Cisco Systems are registered trademarks or trademarks of Cisco Systems") || default_web_page.contains("Cisco Unified Contact Center") || default_web_page.contains("ciscologo.gif") || default_web_page.contains("governing Cisco cryptographic products") || default_web_page.contains("default page when just a URL is entered")) return true;
+if (default_web_page.contains("Cisco Connection Online") || default_web_page.contains("Cisco Codec:") || default_web_page.contains("Server: cisco-IOS") || default_web_page.contains("Cisco Systems") || default_web_page.contains("url ='/webui';window.location.href=url") || default_web_page.contains("icon_styles_ciscologo") || default_web_page.contains("and Cisco Systems are registered trademarks or trademarks of Cisco Systems") || default_web_page.contains("Cisco Unified Contact Center") || default_web_page.contains("ciscologo.gif") || default_web_page.contains("governing Cisco cryptographic products") || default_web_page.contains("default page when just a URL is entered") || default_web_page.contains("level 15 access")) return true;
 
 // Search the SSH banner
 ssh_banner = asset.resultsForQid(38050L);
 if (ssh_banner.contains("Cisco")) return true;
 
+// Search the NTP data
+ntp_info = asset.resultsForQid(38293L);
+if (ntp_info.contains("cisco")) return true;
+
 // Search the SSL cert
 ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Cisco Systems") || ssl_cert.contains("IOS-Self-Signed-Certificate") || ssl_cert.contains("C-series_CIMC")) return true;
+if (ssl_cert.contains("Cisco Systems") || ssl_cert.contains("IOS-Self-Signed-Certificate") || ssl_cert.contains("C-series CIMC") || ssl_cert.contains("Cisco Self Signed")) return true;
 
 // Search the SSL web server version
 ssl_server = asset.resultsForQid(86001L);
@@ -209,7 +265,7 @@ if (sip_info.contains("Cisco-SIPGateway")) return true;
 sip_info = asset.resultsForQid(74042L);
 if (sip_info.contains("UnityMailer")) return true;
 
-if (asset.hasAnyVuln([38211,43001,13605,13811,13488,13662,38673,38667,42395,38250])) return true;
+if (asset.hasAnyVuln([38211,43001,13605,13811,13488,13662,38673,38667,42395,38250,45172])) return true;
 
 
 
@@ -221,6 +277,27 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("Crestron")) return true;
 
+// Search the MAC address
+mac = asset.resultsForQid(43007L);
+if (mac.contains("CRESTRON ELECTRONICS")) return true;
+
+
+
+/* Dell */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([375659,376132,376023,376022])) return true;
+
+processor_bios = asset.resultsForQid(43567L);
+if (processor_bios.contains("Dell Inc")) return true;
+
+model_info = asset.resultsForQid(45304L);
+if (model_info.contains("Dell ")) return true;
+
+chassis = asset.resultsForQid(43733L);
+if (chassis.contains("Dell Inc")) return true;
+
 
 
 /* Emerson/Liebert/Vertiv */
@@ -229,7 +306,7 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the Telnet response
 telnet = asset.resultsForQid(38007L);
-if (telnet.contains("Emerson Network Power")) return true;
+if (telnet.contains("Emerson Network Power") || telnet.contains("RDU-HOST login")) return true;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
@@ -247,7 +324,29 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("F5 Networks Configuration") || default_web_page.contains("F5 Networks, Inc.")) return true;
+if (default_web_page.contains("F5 Networks Configuration") || default_web_page.contains("F5 Networks, Inc.") || default_web_page.contains("Server: BigIP") || default_web_page.contains("BIGIPAuthCookie") || default_web_page.contains("/tmui/login.jsp")) return true;
+
+// Search the redirected web page
+redir_web_page = asset.resultsForQid(13910L);
+if (redir_web_page.contains("F5 Networks Configuration") || redir_web_page.contains("F5 Networks, Inc.") || redir_web_page.contains("Server: BigIP") || redir_web_page.contains("BIGIPAuthCookie") || redir_web_page.contains("tmui/login/css/login.css")) return true;
+
+if (asset.hasAnyVuln([42400,38833,730489])) return true;
+
+// Search the web server version
+web_server = asset.resultsForQid(86000L);
+if (web_server.contains("BigIP")) return true;
+
+// Search the SSL web server version
+ssl_web_server = asset.resultsForQid(86001L);
+if (ssl_web_server.contains("BigIP")) return true;
+
+// Pipelining
+pipelining = asset.resultsForQid(86565L);
+if (pipelining.contains("Server: BigIP") || pipelining.contains("/tmui/login.jsp") || pipelining.contains("Location: /tmui/login.jsp")) return true;
+
+// HTTP response method
+http_response = asset.resultsForQid(48118L);
+if (http_response.contains("Server: BigIP") || http_response.contains("/tmui/login.jsp") || http_response.contains("Location: /tmui/login.jsp")) return true;
 
 
 
@@ -321,6 +420,18 @@ if (model.contains("HP ") || model.contains("EliteDesk") || model.contains("Elit
 
 
 
+/* IBM/Lenovo */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the Telnet banner
+telnet_banner = asset.resultsForQid(38007L);
+if (telnet_banner.contains("Welcome to the server management network terminal!")) return true;
+
+if (asset.hasAnyVuln([11682,12706])) return true;
+
+
+
 /* IDEMIA */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -355,6 +466,22 @@ if (asset.getOperatingSystem.contains("JUNOS") || asset.getOperatingSystem.conta
 
 
 
+/* Lantronix */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([48041])) return true;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("ltx_conf")) return true;
+
+// Search SNMP info
+snmp_info = asset.resultsForQid(78000L);
+if (snmp_info.contains("Lantronix")) return true;
+
+
+
 /* Meraki */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -376,6 +503,38 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 // Search the SSL cert
 ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("NEC Corporation")) return true;
+
+
+
+/* NetApp */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("/sysmgr/SysMgr.html") || default_web_page.contains("/sysmgr/v4/") || (default_web_page.contains("LANG_LOGIN_LOGIN") && default_web_page.contains("ATEN International") && default_web_page.contains("images/logo.gif"))) return true;
+
+// Search the redirected web page
+redirected_page = asset.resultsForQid(13910L);
+if (redirected_page.contains("LANG_LOGIN_LOGIN") && redirected_page.contains("ATEN International") && redirected_page.contains("images/logo.gif")) return true;
+
+// Search the HTTP response
+http_response = asset.resultsForQid(48118L);
+if (http_response.contains("/sysmgr/SysMgr.html") || http_response.contains("UnifiedManager") || http_response.contains("/sysmgr/v4/")) return true;
+
+// Check the OS detection
+os_name = asset.getOperatingSystem();
+if (os_name.contains("NetApp") || os_name.contains("Data ONTAP")) return true;
+
+// iSCSI authentication
+iscsi = asset.resultsForQid(38660L);
+if (iscsi.contains(".com.netapp:")) return true;
+
+// Search SSL cert
+ssl_cert = asset.resultsForQid(86002L);
+if (ssl_cert.contains("NetApp Data Broker") || ssl_cert.contains("UnifiedManager")) return true;
+
+if (asset.hasAnyVuln([62044,11956,38762,38758,38749,38753])) return true;
 
 
 
@@ -404,6 +563,8 @@ if (redirected_web_page.contains("Creating administrative session. Please wait")
 // Search the SSL cert
 ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("organizationName Palo Alto") || ssl_cert.contains("paloaltonetworks.com")) return true;
+
+if (asset.hasAnyVuln([48198])) return true;
 
 
 
@@ -446,6 +607,16 @@ if (ssh_banner.contains("SSH-2.0-Ingrian_SSH")) return true;
 // Search SSL cert
 ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("Ingrian Networks") || ssl_cert.contains("ingrian.com")) return true;
+
+
+
+/* Samsung */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Telnet banner
+telnet = asset.resultsForQid(38007L);
+if (telnet.contains("SAMSUNG ELECTRONICS")) return true;
 
 
 
