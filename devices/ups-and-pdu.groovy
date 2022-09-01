@@ -45,6 +45,20 @@ if (ssl_cert.contains("AMERICAN POWER CONVERSION CORP")) return true;
 
 
 
+/* Chatsworth eConnect */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the default web page
+default_web_page = asset.resultsForQid(12230L);
+if (default_web_page.contains("eConnect") && default_web_page.contains("url=login.lp")) return true;
+
+// Search the SSL cert
+ssl_cert = asset.resultsForQid(86002L);
+if (ssl_cert.contains("eConnect") && ssl_cert.contains("Chatsworth")) return true;
+
+
+
 /* CyberPower */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
