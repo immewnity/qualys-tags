@@ -200,17 +200,14 @@ if (win_prod_type.contains("ReleaseId = " + ReleaseId)) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 String DisplayVersion = "20H2";
-String ReleaseId = "2009";
 String BuildNo = "19042";
 
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
 if (win_prod_type.contains("DisplayVersion = 21H1")) return false;
-if (win_prod_type.contains("ReleaseId = " + ReleaseId) || win_prod_type.contains("CurrentBuildNumber = " + BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
+if (win_prod_type.contains("CurrentBuildNumber = " + BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
 
-// Windows 10 detected
-win_prod_type = asset.resultsForQid(45342L);
-if (win_prod_type.contains("ReleaseId = " + ReleaseId)) return true;
+if (asset.hasAnyVuln([106074])) return true;
 
 
 
@@ -219,16 +216,11 @@ if (win_prod_type.contains("ReleaseId = " + ReleaseId)) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 String DisplayVersion = "21H1";
-String ReleaseId = "2104";
 String BuildNo = "19043";
 
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
-if (win_prod_type.contains("ReleaseId = " + ReleaseId) || win_prod_type.contains("CurrentBuildNumber = " + BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
-
-// Windows 10 detected
-win_prod_type = asset.resultsForQid(45342L);
-if (win_prod_type.contains("ReleaseId = " + ReleaseId)) return true;
+if (win_prod_type.contains("CurrentBuildNumber = " + BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
 
 
 
@@ -237,13 +229,23 @@ if (win_prod_type.contains("ReleaseId = " + ReleaseId)) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 String DisplayVersion = "21H2";
-String ReleaseId = "2109";
-String BuildNo = "19044";
+String Win10BuildNo = "19044";
+String Win11BuildNo = "22000";
 
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
-if (win_prod_type.contains("ReleaseId = " + ReleaseId) || win_prod_type.contains("CurrentBuildNumber = " + BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
+if (win_prod_type.contains("CurrentBuildNumber = " + Win10BuildNo) || win_prod_type.contains("CurrentBuildNumber = " + Win11BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
 
-// Windows 10 detected
-win_prod_type = asset.resultsForQid(45342L);
-if (win_prod_type.contains("ReleaseId = " + ReleaseId)) return true;
+
+
+/* Windows version 21H2 */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+String DisplayVersion = "22H2";
+String Win10BuildNo = "19045";
+String Win11BuildNo = "22621";
+
+// Windows Product Type
+win_prod_type = asset.resultsForQid(90107L);
+if (win_prod_type.contains("CurrentBuildNumber = " + Win10BuildNo) || win_prod_type.contains("CurrentBuildNumber = " + Win11BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
