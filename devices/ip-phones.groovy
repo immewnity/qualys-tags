@@ -11,40 +11,39 @@
 
 
 
+/* Avaya */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search web server version
+if (asset.hasVulnWithResults(78000,"Linux av96x1")) return true;
+
+
+
 /* Cisco */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasAnyVuln([45306,45032,45483,70028,70053,90924,105025])) return false;
 
-// Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-// Search the redirected web page
-redir_page = asset.resultsForQid(13910L);
-// Search the pipelining
-pipelining = asset.resultsForQid(86565L);
+if (asset.hasVulnWithResults(12230,"Cisco Unified IP Phone Cisco Communicator")) return false;
+if (asset.hasVulnWithResults(13910,"Cisco Unified IP Phone Cisco Communicator")) return false;
+if (asset.hasVulnWithResults(86565,"Cisco Unified IP Phone Cisco Communicator")) return false;
 
-if (default_web_page.contains("Cisco Unified IP Phone Cisco Communicator")) return false;
-if (redir_page.contains("Cisco Unified IP Phone Cisco Communicator")) return false;
-if (pipelining.contains("Cisco Unified IP Phone Cisco Communicator")) return false;
-
-if (pipelining.contains("/CGI/Java/Serviceability?adapter=device.statistics.device") || pipelining.contains("Cisco IP Phone") || pipelining.contains("Cisco Unified IP Phone") || pipelining.contains("localmenus.cgi")) return true;
-if (default_web_page.contains("/CGI/Java/Serviceability?adapter=device.statistics.device") || default_web_page.contains("Cisco IP Phone") || default_web_page.contains("Cisco Unified IP Phone") || default_web_page.contains("localmenus.cgi")) return true;
-if (redir_page.contains("/CGI/Java/Serviceability?adapter=device.statistics.device") || redir_page.contains("Cisco IP Phone") || redir_page.contains("Cisco Unified IP Phone") || redir_page.contains("localmenus.cgi")) return true;
+if (asset.hasVulnWithResults(86565,"/CGI/Java/Serviceability?adapter=device.statistics.device") || asset.hasVulnWithResults(86565,"Cisco IP Phone") || asset.hasVulnWithResults(86565,"Cisco Unified IP Phone") || asset.hasVulnWithResults(86565,"localmenus.cgi")) return true;
+if (asset.hasVulnWithResults(12230,"/CGI/Java/Serviceability?adapter=device.statistics.device") || asset.hasVulnWithResults(12230,"Cisco IP Phone") || asset.hasVulnWithResults(12230,"Cisco Unified IP Phone") || asset.hasVulnWithResults(12230,"localmenus.cgi")) return true;
+if (asset.hasVulnWithResults(13910,"/CGI/Java/Serviceability?adapter=device.statistics.device") || asset.hasVulnWithResults(13910,"Cisco IP Phone") || asset.hasVulnWithResults(13910,"Cisco Unified IP Phone") || asset.hasVulnWithResults(13910,"localmenus.cgi")) return true;
 if (asset.hasAnyVuln([730229,45331,13821,13499])) return true;
 
 // Search through SSH banner
-ssh_version = asset.resultsForQid(38050L);
-if (ssh_version.contains("SSH-2.0-1.00")) return true;
+if (asset.hasVulnWithResults(38050,"SSH-2.0-1.00")) return true;
 
 // Search web server version
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("Allegro-Software-RomPager/4.34")) return true;
+if (asset.hasVulnWithResults(86000,"Allegro-Software-RomPager/4.34")) return true;
 
 // Search through SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("organizationalUnitName VTG") && ssl_cert.contains("organizationName Cisco")) return true;
-if (ssl_cert.contains("PID:CP-8831") || ssl_cert.contains("PID:CP-8851")) return true;
+if (asset.hasVulnWithResults(86002,"organizationalUnitName VTG") && asset.hasVulnWithResults(86002,"organizationName Cisco")) return true;
+if (asset.hasVulnWithResults(86002,"PID:CP-8831") || asset.hasVulnWithResults(86002,"PID:CP-8851")) return true;
 
 
 
@@ -53,12 +52,10 @@ if (ssl_cert.contains("PID:CP-8831") || ssl_cert.contains("PID:CP-8851")) return
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the SIP data
-sip_data = asset.resultsForQid(38443L);
-if (sip_data.contains("PolycomSoundStationIP") || sip_data.contains("PolycomRealPresenceTrio") || sip_data.contains("PolycomVVX")) return true;
+if (asset.hasVulnWithResults(38443,"PolycomSoundStationIP") || asset.hasVulnWithResults(38443,"PolycomRealPresenceTrio") || asset.hasVulnWithResults(38443,"PolycomVVX")) return true;
 
 // Search the default web page
-webpage = asset.resultsForQid(12230L);
-if (webpage.contains("Polycom SoundPoint IP Telephone")) return true;
+if (asset.hasVulnWithResults(12230,"Polycom SoundPoint IP Telephone")) return true;
 
 
 
@@ -67,5 +64,4 @@ if (webpage.contains("Polycom SoundPoint IP Telephone")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the SIP data
-sip_data = asset.resultsForQid(38443L);
-if (sip_data.contains("Yealink")) return true;
+if (asset.hasVulnWithResults(38443,"Yealink")) return true;
