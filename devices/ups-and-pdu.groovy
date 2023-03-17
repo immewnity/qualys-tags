@@ -16,32 +16,31 @@
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("Network Management Card AOS")) return true;
+if (asset.hasVulnWithResults(27113,"Network Management Card AOS")) return true;
 
 // Search the SNMP info
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("APC Web")) return true;
+if (asset.hasVulnWithResults(78000,"APC Web")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("American Power Conversion Corp")) return true;
+if (asset.hasVulnWithResults(86002,"American Power Conversion") || asset.hasVulnWithResults(86002,"APC Engineering")) return true;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/home.htm") && default_web_page.contains("See Other")) return true;
+if (asset.hasVulnWithResults(12230,"/home.htm") && asset.hasVulnWithResults(12230,"See Other")) return true;
 
 // Search the redirected default web page
-redirected_web_page = asset.resultsForQid(13910L);
-if (redirected_web_page.contains("/home.htm") && redirected_web_page.contains("See Other")) return true;
+if ((asset.hasVulnWithResults(13910,"/home.htm") && asset.hasVulnWithResults(13910,"See Other")) || asset.hasVulnWithResults(13910,"as we make calls in the ExportGraphJSO that are looking") || asset.hasVulnWithResults(13910,"isxc desktop")) return true;
+
+// HTTP pipelining
+if (asset.hasVulnWithResults(86565,"/home.htm") && asset.hasVulnWithResults(86565,"See Other")) return true;
 
 // HTTP response method
-http_method = asset.resultsForQid(48118L);
-if (http_method.contains("/home.htm") && http_method.contains("See Other")) return true;
+if (asset.hasVulnWithResults(48118,"/home.htm") && asset.hasVulnWithResults(48118,"See Other")) return true;
 
 // Search the MAC address
-ssl_cert = asset.resultsForQid(43007L);
-if (ssl_cert.contains("AMERICAN POWER CONVERSION CORP")) return true;
+if (asset.hasVulnWithResults(43007,"AMERICAN POWER CONVERSION CORP")) return true;
+
+// SSH banner
+if (asset.hasVulnWithResults(38050,"SSH-2.0-cryptlib")) return true;
 
 
 
@@ -50,12 +49,10 @@ if (ssl_cert.contains("AMERICAN POWER CONVERSION CORP")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("eConnect") && default_web_page.contains("url=login.lp")) return true;
+if (asset.hasVulnWithResults(12230,"eConnect") && asset.hasVulnWithResults(12230,"url=login.lp")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("eConnect") && ssl_cert.contains("Chatsworth")) return true;
+if (asset.hasVulnWithResults(86002,"eConnect") && asset.hasVulnWithResults(86002,"Chatsworth")) return true;
 
 
 
@@ -64,12 +61,19 @@ if (ssl_cert.contains("eConnect") && ssl_cert.contains("Chatsworth")) return tru
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("CyberPower FTP")) return true;
+if (asset.hasVulnWithResults(27113,"CyberPower FTP")) return true;
 
 // Search plain text auth
-ptauth = asset.resultsForQid(86728L);
-if (ptauth.contains("login_pass.cgi")) return true;
+if (asset.hasVulnWithResults(86728,"login_pass.cgi")) return true;
+
+
+
+/* Emerson */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the default web page
+if (asset.hasVulnWithResults(78000,"Emerson") && asset.hasVulnWithResults(78000,"Smart PDU")) return true;
 
 
 
@@ -78,21 +82,16 @@ if (ptauth.contains("login_pass.cgi")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // MAC address
-mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("Tripp Lite")) return true;
+if (asset.hasVulnWithResults(43007,"Tripp Lite")) return true;
 
 // SNMP info
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("POWERALERT") || snmp.contains("tripplite")) return true;
+if (asset.hasVulnWithResults(78000,"POWERALERT") || asset.hasVulnWithResults(78000,"tripplite")) return true;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("PowerAlert Device Manager")) return true;
+if (asset.hasVulnWithResults(12230,"PowerAlert Device Manager")) return true;
 
 // SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("poweralert") || ssl_cert.contains("tripplite")) return true;
+if (asset.hasVulnWithResults(86002,"poweralert") || asset.hasVulnWithResults(86002,"tripplite")) return true;
 
 // Search Telnet response
-telnet_response = asset.resultsForQid(38007L);
-if (telnet_response.contains("poweralert") || telnet_response.contains("PowerAlert") || telnet_response.contains("POWERALERT")) return true;
+if (asset.hasVulnWithResults(38007,"poweralert") || asset.hasVulnWithResults(38007,"PowerAlert") || asset.hasVulnWithResults(38007,"POWERALERT")) return true;
