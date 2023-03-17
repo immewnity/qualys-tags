@@ -34,11 +34,39 @@ if (asset.hasAnyVuln([256546,256558,256581,256604,256616,256622,256645,256716,25
 
 
 
+/* Debian */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasTag("OS family: Ubuntu")) return false;
+
+// /etc/issue
+etc_issue = asset.resultsForQid(45046L);
+if (etc_issue.contains("Debian")) return true;
+
+// Unix Server Information
+unix_info = asset.resultsForQid(45037L);
+if (unix_info.contains("Debian Release")) return true;
+
+// Detect Linux version
+linux_version = asset.resultsForQid(45353L);
+if (linux_version.contains("Debian")) return true;
+
+// SSH banner
+ssh_banner = asset.resultsForQid(38050L);
+if (ssh_banner.contains("Debian")) return true;
+
+// APT sources.list
+sources_list = asset.resultsForQid(45293L);
+if (sources_list.contains("Debian GNU")) return true;
+
+
+
 /* macOS */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if (asset.hasAnyVuln([43566,43110,375113,45072,45238,374668,373187,374335,375114,373498,374919])) return true;
+if (asset.hasAnyVuln([43566,43110,375113,45072,45238,374668,373187,374335,375114,373498,374919,45542])) return true;
 
 // VNC Banner
 vnc_banner = asset.resultsForQid(38062L);
@@ -149,6 +177,9 @@ sources_list = asset.resultsForQid(45293L);
 if (sources_list.contains("from the Ubuntu security team")) return true;
 
 if (asset.hasAnyVuln([105617,198438,105568,105715,198434])) return true;
+
+// SSH Banner
+if (asset.hasVulnWithResults(38050,"Ubuntu")) return true;
 
 
 
