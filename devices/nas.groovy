@@ -16,16 +16,28 @@
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("url=/static/index.html")) return true;
+if (asset.hasVulnWithResults(12230,"url=/static/index.html")) return true;
 
 // Search shared folders
-shared_folders = asset.resultsForQid(70030L);
-if (shared_folders.contains("LinkStation") || shared_folders.contains("TeraStation")) return true;
+if (asset.hasVulnWithResults(70030,"LinkStation") || asset.hasVulnWithResults(70030,"TeraStation")) return true;
 
 // Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("organizationalUnitName NAS") && ssl_cert.contains("organizationName buffalo")) return true;
+if (asset.hasVulnWithResults(86002,"organizationalUnitName NAS") && asset.hasVulnWithResults(86002,"organizationName buffalo")) return true;
+
+
+
+/* InfiniBox */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the default web page
+if (asset.hasVulnWithResults(12230,"InfiniBox")) return true;
+
+// Search the redirected web page
+if (asset.hasVulnWithResults(13910,"InfiniBox")) return true;
+
+// Search SSL cert
+if (asset.hasVulnWithResults(86002,"Infinilab") || asset.hasVulnWithResults(86002,"Infinidat")) return true;
 
 
 
@@ -34,16 +46,13 @@ if (ssl_cert.contains("organizationalUnitName NAS") && ssl_cert.contains("organi
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Set-Cookie: iomega=") || default_web_page.contains("restricted to MediaServer") || default_web_page.contains("Iomega StorCenter")) return true;
+if (asset.hasVulnWithResults(12230,"Set-Cookie: iomega=") || asset.hasVulnWithResults(12230,"restricted to MediaServer") || asset.hasVulnWithResults(12230,"Iomega StorCenter")) return true;
 
 // Search the redirected web page
-redirected_web_page = asset.resultsForQid(12230L);
-if (redirected_web_page.contains("Iomega StorCenter")) return true;
+if (asset.hasVulnWithResults(13910,"Iomega StorCenter")) return true;
 
 // Search shared folders
-shared_folders = asset.resultsForQid(70030L);
-if (shared_folders.contains("Lenovo ix4") || shared_folders.contains("Lenovo ix2")) return true;
+if (asset.hasVulnWithResults(70030,"Lenovo ix4") || asset.hasVulnWithResults(70030,"Lenovo ix2")) return true;
 
 
 
@@ -51,13 +60,10 @@ if (shared_folders.contains("Lenovo ix4") || shared_folders.contains("Lenovo ix2
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the redirected web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("TrueNAS") || default_web_page.contains("ix-blue") || default_web_page.contains("ix-blue")) return true;
+if (asset.hasVulnWithResults(12230,"TrueNAS") || asset.hasVulnWithResults(13910,"TrueNAS") || asset.hasVulnWithResults(13910,"ix-blue") || asset.hasVulnWithResults(12230,"ix-blue")) return true;
 
 // Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("iXsystems") || ssl_cert.contains("ixsystems.com")) return true;
+if (asset.hasVulnWithResults(86002,"iXsystems") || asset.hasVulnWithResults(86002,"ixsystems.com")) return true;
 
 
 
@@ -66,16 +72,13 @@ if (ssl_cert.contains("iXsystems") || ssl_cert.contains("ixsystems.com")) return
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the redirected default web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("NETGEAR ReadyNAS")) return true;
+if (asset.hasVulnWithResults(13910,"NETGEAR ReadyNAS")) return true;
 
 // Search shared folders
-shared_folders = asset.resultsForQid(70030L);
-if (shared_folders.contains("NAS4360")) return true;
+if (asset.hasVulnWithResults(70030,"NAS4360")) return true;
 
 // Search iSCSI auth info
-iscsi = asset.resultsForQid(38660L);
-if (iscsi.contains("netgear:nas")) return true;
+if (asset.hasVulnWithResults(38660,"netgear:nas")) return true;
 
 
 
@@ -84,12 +87,10 @@ if (iscsi.contains("netgear:nas")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("location.hostname+pt+redirect_suffix")) return true;
+if (asset.hasVulnWithResults(12230,"location.hostname+pt+redirect_suffix")) return true;
 
 // Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("organizationalUnitName NAS") && ssl_cert.contains("organizationName QNAP")) return true;
+if (asset.hasVulnWithResults(86002,"organizationalUnitName NAS") && asset.hasVulnWithResults(86002,"organizationName QNAP")) return true;
 
 if (asset.hasAnyVuln([48121,13154])) return true;
 
@@ -100,20 +101,16 @@ if (asset.hasAnyVuln([48121,13154])) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("sign in to Seagate Central")) return true;
+if (asset.hasVulnWithResults(12230,"sign in to Seagate Central")) return true;
 
 // Search the FTP banner
-ftp_banner = asset.resultsForQid(27113L);
-if (ftp_banner.contains("Seagate Central")) return true;
+if (asset.hasVulnWithResults(27113,"Seagate Central")) return true;
 
 // Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Seagate Central")) return true;
+if (asset.hasVulnWithResults(86002,"Seagate Central")) return true;
 
 // Search NetBIOS
-netbios = asset.resultsForQid(70030L);
-if (netbios.contains("Seagate Central")) return true;
+if (asset.hasVulnWithResults(70030,"Seagate Central")) return true;
 
 
 
@@ -122,24 +119,19 @@ if (netbios.contains("Seagate Central")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Synology") || default_web_page.contains("SYNO.Core.Desktop") || default_web_page.contains("RackStation")) return true;
+if (asset.hasVulnWithResults(12230,"Synology") || asset.hasVulnWithResults(12230,"SYNO.Core.Desktop") || asset.hasVulnWithResults(12230,"RackStation")) return true;
 
 // Search the redirected web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("Synology") || default_web_page.contains("SYNO.Core.Desktop") || default_web_page.contains("RackStation")) return true;
+if (asset.hasVulnWithResults(13910,"Synology") || asset.hasVulnWithResults(13910,"SYNO.Core.Desktop") || asset.hasVulnWithResults(13910,"RackStation")) return true;
 
 // Search SSH banner
-ssh_banner = asset.resultsForQid(38050L);
-if (ssh_banner.contains("SSH-2.0-OpenSSH_6.8p1-hpn14v6")) return true;
+if (asset.hasVulnWithResults(38050,"SSH-2.0-OpenSSH_6.8p1-hpn14v6")) return true;
 
 // Search HTTP header
-http_header = asset.resultsForQid(48118L);
-if (http_header.contains("synology")) return true;
+if (asset.hasVulnWithResults(48118,"synology")) return true;
 
 // Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Synology")) return true;
+if (asset.hasVulnWithResults(86002,"Synology")) return true;
 
 
 
@@ -148,9 +140,7 @@ if (ssl_cert.contains("Synology")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the redirected default web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("X-Orion-Version")) return true;
+if (asset.hasVulnWithResults(13910,"X-Orion-Version")) return true;
 
 // Search shared folders
-shared_folders = asset.resultsForQid(70030L);
-if (shared_folders.contains("My Book Live Network Storage")) return true;
+if (asset.hasVulnWithResults(70030,"My Book Live Network Storage")) return true;
