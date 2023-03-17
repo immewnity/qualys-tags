@@ -59,13 +59,18 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 win_prod_type = asset.resultsForQid(90107L);
 if (win_prod_type.contains("ProductType = WinNT") && win_prod_type.contains("ProductName = Windows_10_")) return true;
 
-if(asset.hasAnyVuln([105998,105815,105817,105871,105718,105733,105753,105784,105941,91496,91540,45342])) return true;
+// Installed patches
+patches = asset.resultsForQid(91328L);
+if (patches.contains("KB5003791") || patches.contains("KB5016705") || patches.contains("KB4562830") || patches.contains("KB5018506") || patches.contains("KB5020613") || patches.contains("KB5007273") || patches.contains("KB5014032") || patches.contains("KB5015895") || patches.contains("KB5014671") || patches.contains("KB5019959") || patches.contains("KB5000983")) return true;
 
+if(asset.hasAnyVuln([105998,105815,105817,105871,105718,105733,105753,105784,105941,91496,91540,45342])) return true;
 
 
 /* Windows 11 */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if(asset.hasAnyVuln([45513])) return true;
 
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
