@@ -16,16 +16,13 @@
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/general/status.html") && default_web_page.contains("debut")) return true;
+if (asset.hasVulnWithResults(12230,"/general/status.html") && asset.hasVulnWithResults(12230,"debut")) return true;
 
 // Search the redirected web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("solutions.brother.com") || default_web_page.contains("Brother MFC") || default_web_page.contains("possibleprintnum")) return true;
+if (asset.hasVulnWithResults(13910,"solutions.brother.com") || asset.hasVulnWithResults(13910,"Brother MFC") || asset.hasVulnWithResults(13910,"possibleprintnum")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Brother ")) return true;
+if (asset.hasVulnWithResults(78000,"Brother ")) return true;
 
 
 
@@ -34,28 +31,22 @@ if (snmp.contains("Brother ")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("CANON HTTP Server") || default_web_page.contains("canonlogo") || default_web_page.contains("Copyright CANON") || default_web_page.contains("user can log in without") || default_web_page.contains(":8000/rps/")) return true;
+if (asset.hasVulnWithResults(12230,"CANON HTTP Server") || asset.hasVulnWithResults(12230,"canonlogo") || asset.hasVulnWithResults(12230,"Copyright CANON") || asset.hasVulnWithResults(12230,"user can log in without") || asset.hasVulnWithResults(12230,":8000/rps/")) return true;
 
 // Search the redirected web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("CANON HTTP Server") || default_web_page.contains("canonlogo") || default_web_page.contains("Copyright CANON") || default_web_page.contains("user can log in without") || default_web_page.contains(":8000/rps/")) return true;
+if (asset.hasVulnWithResults(13910,"CANON HTTP Server") || asset.hasVulnWithResults(13910,"canonlogo") || asset.hasVulnWithResults(13910,"Copyright CANON") || asset.hasVulnWithResults(13910,"user can log in without") || asset.hasVulnWithResults(13910,":8000/rps/")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Canon iR-ADV") || ssl_cert.contains("Canon Imaging Product") || ssl_cert.contains("CANON ELECTRONICS")) return true;
+if (asset.hasVulnWithResults(86002,"Canon iR-ADV") || asset.hasVulnWithResults(86002,"Canon Imaging Product") || asset.hasVulnWithResults(86002,"CANON ELECTRONICS")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Canon ")) return true;
+if (asset.hasVulnWithResults(78000,"Canon ")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("Canon") && ftp_response.contains("Print")) return true;
+if (asset.hasVulnWithResults(27113,"Canon") && asset.hasVulnWithResults(27113,"Print")) return true;
 
 // Search the web server version
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("CANON HTTP Server")) return true;
+if (asset.hasVulnWithResults(86000,"CANON HTTP Server")) return true;
 
 
 
@@ -64,26 +55,21 @@ if (web_server.contains("CANON HTTP Server")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Xerox")) return false;
-if (snmp.contains("Dell") && snmp.contains("Laser")) return true;
+if (asset.hasVulnWithResults(78000,"Xerox")) return false;
+if (asset.hasVulnWithResults(78000,"Dell") && asset.hasVulnWithResults(78000,"Laser")) return true;
 
 // FTP response
-ftp = asset.resultsForQid(27113L);
-if (ftp.contains("Xerox")) return false;
-if (ftp.contains("Dell") && ftp.contains("Laser")) return true;
+if (asset.hasVulnWithResults(27113,"Xerox")) return false;
+if (asset.hasVulnWithResults(27113,"Dell") && asset.hasVulnWithResults(27113,"Laser")) return true;
 
 // Web server
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("EWS-NIC5")) return true;
+if (asset.hasVulnWithResults(86000,"EWS-NIC5")) return true;
 
 // web response
-default_web = asset.resultsForQid(12230L);
-if (default_web.contains("Dell") && default_web.contains("/printer/status") && default_web.contains("style_new")) return true;
+if (asset.hasVulnWithResults(12230,"Dell") && asset.hasVulnWithResults(12230,"/printer/status") && asset.hasVulnWithResults(12230,"style_new")) return true;
 
 // redirected web response
-web_redirect = asset.resultsForQid(13910L);
-if (web_redirect.contains("Dell") && web_redirect.contains("Laser") && web_redirect.contains("framelogo") && web_redirect.contains("TopLogo")) return true;
+if (asset.hasVulnWithResults(13910,"Dell") && asset.hasVulnWithResults(13910,"Laser") && asset.hasVulnWithResults(13910,"framelogo") && asset.hasVulnWithResults(13910,"TopLogo")) return true;
 
 
 
@@ -92,16 +78,13 @@ if (web_redirect.contains("Dell") && web_redirect.contains("Laser") && web_redir
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the SNMP data
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("LabelWriter")) return true;
+if (asset.hasVulnWithResults(78000,"LabelWriter")) return true;
 
 // Default web page
-default_page = asset.resultsForQid(12230L);
-if (default_page.contains("DYMO LabelWriter Print Server")) return true;
+if (asset.hasVulnWithResults(12230,"DYMO LabelWriter Print Server")) return true;
 
 // HTTP auth detection
-http_auth = asset.resultsForQid(86728L);
-if (http_auth.contains("DYMO LabelWriter Print Server")) return true;
+if (asset.hasVulnWithResults(86728,"DYMO LabelWriter Print Server")) return true;
 
 
 
@@ -110,20 +93,16 @@ if (http_auth.contains("DYMO LabelWriter Print Server")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("wt2parser.cgi")) return true;
+if (asset.hasVulnWithResults(12230,"wt2parser.cgi")) return true;
 
 // Search the redirected web page
-redir_web_page = asset.resultsForQid(13910L);
-if (redir_web_page.contains("wt2parser.cgi")) return true;
+if (asset.hasVulnWithResults(13910,"wt2parser.cgi")) return true;
 
 // Search the FTP response
-ftp = asset.resultsForQid(27113L);
-if (ftp.contains("220 EFI FTP Print")) return true;
+if (asset.hasVulnWithResults(27113,"220 EFI FTP Print")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("EFI") && ssl_cert.contains("Fiery")) return true;
+if (asset.hasVulnWithResults(86002,"EFI") && asset.hasVulnWithResults(86002,"Fiery")) return true;
 
 
 
@@ -132,20 +111,16 @@ if (ssl_cert.contains("EFI") && ssl_cert.contains("Fiery")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("SEIKO EPSON") || default_web_page.contains("EpsonNet") || default_web_page.contains("EPSON-HTTP")) return true;
+if (asset.hasVulnWithResults(12230,"SEIKO EPSON") || asset.hasVulnWithResults(12230,"EpsonNet") || asset.hasVulnWithResults(12230,"EPSON-HTTP")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("SEIKO EPSON")) return true;
+if (asset.hasVulnWithResults(86002,"SEIKO EPSON")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("EPSON") && (snmp.contains("Printer") || snmp.contains("Print Server"))) return true;
+if (asset.hasVulnWithResults(78000,"EPSON") && (asset.hasVulnWithResults(78000,"Printer") || asset.hasVulnWithResults(78000,"Print Server"))) return true;
 
 // Web server version
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("Epson UPnP SDK")) return true;
+if (asset.hasVulnWithResults(86000,"Epson UPnP SDK")) return true;
 
 
 
@@ -154,8 +129,7 @@ if (web_server.contains("Epson UPnP SDK")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the SNMP data
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("www.hidglobal.com") || snmp.contains("HDP5000")) return true;
+if (asset.hasVulnWithResults(78000,"www.hidglobal.com") || asset.hasVulnWithResults(78000,"HDP5000")) return true;
 
 
 
@@ -166,50 +140,34 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 if (asset.hasAnyVuln([45146,78018,12275])) return true;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/hp/device/DeviceStatus") || default_web_page.contains("setupSectionDiv") || default_web_page.contains("Actual cartridge life remaining may vary.") || default_web_page.contains("and its HP Jetdirect print server") || default_web_page.contains("/help/engl/ewshelp.htm") || default_web_page.contains("Generic image of a printer") || default_web_page.contains("/SSI/supply_status.htm") || default_web_page.contains("/hp/device/SignIn/Index") || default_web_page.contains("InternalPages_Index_SuppliesStatus") || default_web_page.contains("HP LaserJet M605") || default_web_page.contains("info_deviceStatus") || default_web_page.contains("titleColonSemicolonSeparatedCssList") || default_web_page.contains("hpGasGaugeBorder")) return true;
+if (asset.hasVulnWithResults(12230,"/hp/device/DeviceStatus") || asset.hasVulnWithResults(12230,"setupSectionDiv") || asset.hasVulnWithResults(12230,"Actual cartridge life remaining may vary.") || asset.hasVulnWithResults(12230,"and its HP Jetdirect print server") || asset.hasVulnWithResults(12230,"/help/engl/ewshelp.htm") || asset.hasVulnWithResults(12230,"Generic image of a printer") || asset.hasVulnWithResults(12230,"/SSI/supply_status.htm") || asset.hasVulnWithResults(12230,"/hp/device/SignIn/Index") || asset.hasVulnWithResults(12230,"InternalPages_Index_SuppliesStatus") || asset.hasVulnWithResults(12230,"HP LaserJet M605") || asset.hasVulnWithResults(12230,"info_deviceStatus") || asset.hasVulnWithResults(12230,"titleColonSemicolonSeparatedCssList") || asset.hasVulnWithResults(12230,"hpGasGaugeBorder")) return true;
 
 // Search the redirected web page
-redirected_web_page = asset.resultsForQid(13910L);
-if (redirected_web_page.contains("/hp/device/DeviceStatus") || redirected_web_page.contains("setupSectionDiv") || redirected_web_page.contains("Actual cartridge life remaining may vary.") || redirected_web_page.contains("and its HP Jetdirect print server") || redirected_web_page.contains("/help/engl/ewshelp.htm") || redirected_web_page.contains("Generic image of a printer") || redirected_web_page.contains("/SSI/supply_status.htm") || redirected_web_page.contains("/hp/device/SignIn/Index") || redirected_web_page.contains("InternalPages_Index_SuppliesStatus") || redirected_web_page.contains("HP LaserJet M605") || redirected_web_page.contains("info_deviceStatus") || redirected_web_page.contains("titleColonSemicolonSeparatedCssList") || redirected_web_page.contains("hpGasGaugeBorder")) return true;
+if (asset.hasVulnWithResults(13910,"/hp/device/DeviceStatus") || asset.hasVulnWithResults(13910,"setupSectionDiv") || asset.hasVulnWithResults(13910,"Actual cartridge life remaining may vary.") || asset.hasVulnWithResults(13910,"and its HP Jetdirect print server") || asset.hasVulnWithResults(13910,"/help/engl/ewshelp.htm") || asset.hasVulnWithResults(13910,"Generic image of a printer") || asset.hasVulnWithResults(13910,"/SSI/supply_status.htm") || asset.hasVulnWithResults(13910,"/hp/device/SignIn/Index") || asset.hasVulnWithResults(13910,"InternalPages_Index_SuppliesStatus") || asset.hasVulnWithResults(13910,"HP LaserJet M605") || asset.hasVulnWithResults(13910,"info_deviceStatus") || asset.hasVulnWithResults(13910,"titleColonSemicolonSeparatedCssList") || asset.hasVulnWithResults(13910,"hpGasGaugeBorder")) return true;
 
 // Search FTP directory listing
-ftp_listing = asset.resultsForQid(27367L);
-if (ftp_listing.contains("JetDirect")) return true;
+if (asset.hasVulnWithResults(27367,"JetDirect")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("220 JD FTP Server Ready")) return true;
+if (asset.hasVulnWithResults(27113,"220 JD FTP Server Ready")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Jetdirect") || ssl_cert.contains("LaserJet") || ssl_cert.contains("HP-IPG")) return true;
+if (asset.hasVulnWithResults(86002,"Jetdirect") || asset.hasVulnWithResults(86002,"LaserJet") || asset.hasVulnWithResults(86002,"HP-IPG")) return true;
 
 // Search SNMP info
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("HP ETHERNET MULTI-ENVIRONMENT") || snmp.contains("JETDIRECT")) return true;
+if (asset.hasVulnWithResults(78000,"HP ETHERNET MULTI-ENVIRONMENT") || asset.hasVulnWithResults(78000,"JETDIRECT")) return true;
 
 // Search HP info
-hp_info = asset.resultsForQid(45145L);
-if (hp_info.contains("HP ETHERNET MULTI-ENVIRONMENT") || hp_info.contains("JETDIRECT") || (hp_info.contains("Make") && (hp_info.contains("Model") || hp_info.contains("Firmware") || hp_info.contains("Serial")))) return true;
+if (asset.hasVulnWithResults(45145,"HP ETHERNET MULTI-ENVIRONMENT") || asset.hasVulnWithResults(45145,"JETDIRECT") || (asset.hasVulnWithResults(45145,"Make") && (asset.hasVulnWithResults(45145,"Model") || asset.hasVulnWithResults(45145,"Firmware") || asset.hasVulnWithResults(45145,"Serial")))) return true;
 
 // Directories exist
-directories_exist = asset.resultsForQid(86672L);
-if (directories_exist.contains("/hp/device/") && !(directories_exist.contains("/invisionboard/") || directories_exist.contains("phpmynewsletter") || directories_exist.contains("postnuke") || directories_exist.contains("phpnuke") || directories_exist.contains("phpShare") || directories_exist.contains("mediawiki") || directories_exist.contains("zencart") || directories_exist.contains("WebCalendar") || directories_exist.contains("zeroboard") || directories_exist.contains("phpmyadmin") || directories_exist.contains("awstats") || directories_exist.contains("yapig") || directories_exist.contains("tomatocart") || directories_exist.contains("seopanel") || directories_exist.contains("zpanel") || directories_exist.contains("phpwebthings") || directories_exist.contains("jscripts") || directories_exist.contains("drupal") || directories_exist.contains("coregui") || directories_exist.contains("owa/auth"))) return true;
-
-if (asset.getOperatingSystem()=="HP JetDirect") return true;
-
-// Search OS detected
-os_detection = asset.resultsForQid(45017L);
-if (os_detection.contains("HP JetDirect")) return true;
+if (asset.hasVulnWithResults(86672,"/hp/device/") && !(asset.hasVulnWithResults(86672,"/invisionboard/") || asset.hasVulnWithResults(86672,"phpmynewsletter") || asset.hasVulnWithResults(86672,"postnuke") || asset.hasVulnWithResults(86672,"phpnuke") || asset.hasVulnWithResults(86672,"phpShare") || asset.hasVulnWithResults(86672,"mediawiki") || asset.hasVulnWithResults(86672,"zencart") || asset.hasVulnWithResults(86672,"WebCalendar") || asset.hasVulnWithResults(86672,"zeroboard") || asset.hasVulnWithResults(86672,"phpmyadmin") || asset.hasVulnWithResults(86672,"awstats") || asset.hasVulnWithResults(86672,"yapig") || asset.hasVulnWithResults(86672,"tomatocart") || asset.hasVulnWithResults(86672,"seopanel") || asset.hasVulnWithResults(86672,"zpanel") || asset.hasVulnWithResults(86672,"phpwebthings") || asset.hasVulnWithResults(86672,"jscripts") || asset.hasVulnWithResults(86672,"drupal") || asset.hasVulnWithResults(86672,"coregui") || asset.hasVulnWithResults(86672,"owa/auth"))) return true;
 
 // Search web server
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("Designjet")) return true;
+if (asset.hasVulnWithResults(86000,"Designjet")) return true;
 
 // Search response method
-resp_method = asset.resultsForQid(48118L);
-if (resp_method.contains("Designjet")) return true;
+if (asset.hasVulnWithResults(48118,"Designjet")) return true;
 
 
 
@@ -218,36 +176,28 @@ if (resp_method.contains("Designjet")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the Telnet response
-telnet = asset.resultsForQid(38007L);
-if (telnet.contains("KONICA MINOLTA")) return true;
+if (asset.hasVulnWithResults(38007,"KONICA MINOLTA")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("KONICA MINOLTA")) return true;
+if (asset.hasVulnWithResults(27113,"KONICA MINOLTA")) return true;
 
 // Web server version
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("Konica Minolta Printer")) return true;
+if (asset.hasVulnWithResults(86000,"Konica Minolta Printer")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("KONICA MINOLTA bizhub")) return true;
+if (asset.hasVulnWithResults(78000,"KONICA MINOLTA bizhub")) return true;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("URL=/wcd/js_error.xml") || default_web_page.contains("/wcd/index.html")) return true;
+if (asset.hasVulnWithResults(12230,"URL=/wcd/js_error.xml") || asset.hasVulnWithResults(12230,"/wcd/index.html")) return true;
 
 // MAC address
-mac_address = asset.resultsForQid(43007L);
-if (mac_address.contains("MINOLTA")) return true;
+if (asset.hasVulnWithResults(43007,"MINOLTA")) return true;
 
 // Web server pipelining
-pipelining = asset.resultsForQid(86565L);
-if (pipelining.contains("/wcd/js_error.xml") || pipelining.contains("/wcd/index.html")) return true;
+if (asset.hasVulnWithResults(86565,"/wcd/js_error.xml") || asset.hasVulnWithResults(86565,"/wcd/index.html")) return true;
 
 // SSL certificate
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("KONICA MINOLTA bizhub") || ssl_cert.contains("KONICA_MINOLTA_bizhub")) return true;
+if (asset.hasVulnWithResults(86002,"KONICA MINOLTA bizhub") || asset.hasVulnWithResults(86002,"KONICA_MINOLTA_bizhub")) return true;
 
 
 
@@ -256,20 +206,16 @@ if (ssl_cert.contains("KONICA MINOLTA bizhub") || ssl_cert.contains("KONICA_MINO
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("KYOCERA Document Solutions Printing System") || snmp.contains("KYOCERA Printer") || snmp.contains("IB-21E")) return true;
+if (asset.hasVulnWithResults(78000,"KYOCERA Document Solutions Printing System") || asset.hasVulnWithResults(78000,"KYOCERA Printer") || asset.hasVulnWithResults(78000,"IB-21E")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("TASKalfa") || ftp_response.contains("IB-21E") || ftp_response.contains("NS-30 Ver")) return true;
+if (asset.hasVulnWithResults(27113,"TASKalfa") || asset.hasVulnWithResults(27113,"IB-21E") || asset.hasVulnWithResults(27113,"NS-30 Ver")) return true;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/startwlm/Start_Wlm.htm") || default_web_page.contains("KYOCERA MITA Corporation") || (default_web_page.contains("NS-30") && default_web_page.contains("NetworkScanner"))) return true;
+if (asset.hasVulnWithResults(12230,"/startwlm/Start_Wlm.htm") || asset.hasVulnWithResults(12230,"KYOCERA MITA Corporation") || (asset.hasVulnWithResults(12230,"NS-30") && asset.hasVulnWithResults(12230,"NetworkScanner"))) return true;
 
 // Search NetBIOS info
-netbios = asset.resultsForQid(70004L);
-if (netbios.contains("NetPrinters")) return true;
+if (asset.hasVulnWithResults(70004,"NetPrinters")) return true;
 
 
 
@@ -278,16 +224,13 @@ if (netbios.contains("NetPrinters")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/cgi-bin/dynamic/topbar.html") || default_web_page.contains("is not a single variable so it is a function")) return true;
+if (asset.hasVulnWithResults(12230,"/cgi-bin/dynamic/topbar.html") || asset.hasVulnWithResults(12230,"is not a single variable so it is a function")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("Lexmark")) return true;
+if (asset.hasVulnWithResults(27113,"Lexmark")) return true;
 
 // Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("organizationalUnitName PS&SD") && ssl_cert.contains("organizationName Lexmark")) return true;
+if (asset.hasVulnWithResults(86002,"organizationalUnitName PS&SD") && asset.hasVulnWithResults(86002,"organizationName Lexmark")) return true;
 
 if (asset.hasAnyVuln([43505,38715])) return true;
 
@@ -298,12 +241,10 @@ if (asset.hasAnyVuln([43505,38715])) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Muratec ")) return true;
+if (asset.hasVulnWithResults(78000,"Muratec ")) return true;
 
 // MAC address
-mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("MURATA")) return true;
+if (asset.hasVulnWithResults(43007,"MURATA")) return true;
 
 
 
@@ -312,12 +253,10 @@ if (mac_addr.contains("MURATA")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the HTTP header
-http_header = asset.resultsForQid(48118L);
-if (http_header.contains("Oce Express")) return true;
+if (asset.hasVulnWithResults(48118,"Oce Express")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Oce, ") || snmp.contains("PlotWave")) return true;
+if (asset.hasVulnWithResults(78000,"Oce, ") || asset.hasVulnWithResults(78000,"PlotWave")) return true;
 
 
 
@@ -326,8 +265,7 @@ if (snmp.contains("Oce, ") || snmp.contains("PlotWave")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("OKI ") || snmp.contains("OkiLAN")) return true;
+if (asset.hasVulnWithResults(78000,"OKI ") || asset.hasVulnWithResults(78000,"OkiLAN")) return true;
 
 
 
@@ -336,12 +274,10 @@ if (snmp.contains("OKI ") || snmp.contains("OkiLAN")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Panasonic UF") || snmp.contains("Panasonic KX") || snmp.contains("Panasonic DP") || snmp.contains("Panasonic KV")) return true;
+if (asset.hasVulnWithResults(78000,"Panasonic UF") || asset.hasVulnWithResults(78000,"Panasonic KX") || asset.hasVulnWithResults(78000,"Panasonic DP") || asset.hasVulnWithResults(78000,"Panasonic KV")) return true;
 
 // Search MAC address
-mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("MATSUHITA") || mac_addr.contains("MATSUSHITA")) return true;
+if (asset.hasVulnWithResults(43007,"MATSUHITA") || asset.hasVulnWithResults(43007,"MATSUSHITA")) return true;
 
 
 
@@ -350,36 +286,28 @@ if (mac_addr.contains("MATSUHITA") || mac_addr.contains("MATSUSHITA")) return tr
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if ((default_web_page.contains("websys") && default_web_page.contains("webArch")) || default_web_page.contains("wt2parser") || default_web_page.contains("Web Image Monitor") || default_web_page.contains("top_head.cgi")) return true;
+if ((asset.hasVulnWithResults(12230,"websys") && asset.hasVulnWithResults(12230,"webArch")) || asset.hasVulnWithResults(12230,"wt2parser") || asset.hasVulnWithResults(12230,"Web Image Monitor") || asset.hasVulnWithResults(12230,"top_head.cgi") || asset.hasVulnWithResults(12230,"Knopflerfish")) return true;
 
 // Search the redirected web page
-redir_web_page = asset.resultsForQid(13910L);
-if ((redir_web_page.contains("websys") && redir_web_page.contains("webArch")) || redir_web_page.contains("wt2parser") || redir_web_page.contains("Web Image Monitor") || redir_web_page.contains("top_head.cgi")) return true;
+if ((asset.hasVulnWithResults(13910,"websys") && asset.hasVulnWithResults(13910,"webArch")) || asset.hasVulnWithResults(13910,"wt2parser") || asset.hasVulnWithResults(13910,"Web Image Monitor") || asset.hasVulnWithResults(13910,"top_head.cgi") || asset.hasVulnWithResults(13910,"Knopflerfish")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("RICOH ") || ftp_response.contains("LANIER ") || ftp_response.contains("SAVIN ")) return true;
+if (asset.hasVulnWithResults(27113,"RICOH ") || asset.hasVulnWithResults(27113,"LANIER ") || asset.hasVulnWithResults(27113,"SAVIN ")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("RICOH") || snmp.contains("SAVIN Network Printer") || snmp.contains("LANIER")) return true;
+if (asset.hasVulnWithResults(78000,"RICOH") || asset.hasVulnWithResults(78000,"SAVIN Network Printer") || asset.hasVulnWithResults(78000,"LANIER")) return true;
 
 // Search the Telnet response
-telnet = asset.resultsForQid(38007L);
-if (telnet.contains("Maintenance Shell") && telnet.contains("User access verification")) return true;
+if (asset.hasVulnWithResults(38007,"Maintenance Shell") && asset.hasVulnWithResults(38007,"User access verification")) return true;
 
 // Remote Shell vuln
-remote_shell = asset.resultsForQid(38020L);
-if (remote_shell.contains("service rsh/rexec and os RICOH PRINTER")) return true;
+if (asset.hasVulnWithResults(38020,"service rsh/rexec and os RICOH PRINTER")) return true;
 
 // MAC address
-mac_address = asset.resultsForQid(43007L);
-if (mac_address.contains("RICOH COMPANY")) return true;
+if (asset.hasVulnWithResults(43007,"RICOH COMPANY")) return true;
 
 // Autocomplete
-autocomplete = asset.resultsForQid(86729L);
-if (autocomplete.contains("/images/RICOH.gif") || autocomplete.contains("Web Image Monitor") || (autocomplete.contains("websys") && autocomplete.contains("webArch"))) return true;
+if (asset.hasVulnWithResults(36729,"/images/RICOH.gif") || asset.hasVulnWithResults(36729,"Web Image Monitor") || (asset.hasVulnWithResults(36729,"websys") && asset.hasVulnWithResults(36729,"webArch"))) return true;
 
 
 
@@ -388,16 +316,13 @@ if (autocomplete.contains("/images/RICOH.gif") || autocomplete.contains("Web Ima
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/sws/images/fav.ico")) return true;
+if (asset.hasVulnWithResults(12230,"/sws/images/fav.ico")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Samsung M283x")) return true;
+if (asset.hasVulnWithResults(78000,"Samsung M283x")) return true;
 
 // Devices available
-devices = asset.resultsForQid(78009L);
-if (devices.contains("Samsung M283x") || devices.contains("Samsung Copy Service")) return true;
+if (asset.hasVulnWithResults(78009,"Samsung M283x") || asset.hasVulnWithResults(78009,"Samsung Copy Service")) return true;
 
 
 
@@ -406,24 +331,19 @@ if (devices.contains("Samsung M283x") || devices.contains("Samsung Copy Service"
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("browser of frame dealing") || default_web_page.contains("Can't read file /default-web")) return true;
+if (asset.hasVulnWithResults(12230,"browser of frame dealing") || asset.hasVulnWithResults(12230,"Can't read file /default-web")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("SHARP MX") || ftp_response.contains("SHARP AR") || ftp_response.contains("Sharp DX")) return true;
+if (asset.hasVulnWithResults(27113,"SHARP MX") || asset.hasVulnWithResults(27113,"SHARP AR") || asset.hasVulnWithResults(27113,"Sharp DX")) return true;
 
 // Search SNMP response
-snmp_response = asset.resultsForQid(78000L);
-if (snmp_response.contains("SHARP MX") || snmp_response.contains("SHARP AR") || snmp_response.contains("Sharp DX")) return true;
+if (asset.hasVulnWithResults(78000,"SHARP MX") || asset.hasVulnWithResults(78000,"SHARP AR") || asset.hasVulnWithResults(78000,"Sharp DX")) return true;
 
 // Search Telnet response
-telnet = asset.resultsForQid(38007L);
-if (telnet.contains("SHARP MX") || telnet.contains("SHARP AR") || telnet.contains("Sharp DX")) return true;
+if (asset.hasVulnWithResults(38007,"SHARP MX") || asset.hasVulnWithResults(38007,"SHARP AR") || asset.hasVulnWithResults(38007,"Sharp DX")) return true;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if ((ssl_cert.contains("Sharp Corporation") && ssl_cert.contains("Document Systems Group")) || ssl_cert.contains("SHARP MX")) return true;
+if ((asset.hasVulnWithResults(86002,"Sharp Corporation") && asset.hasVulnWithResults(86002,"Document Systems Group")) || asset.hasVulnWithResults(86002,"SHARP MX")) return true;
 
 
 
@@ -433,16 +353,13 @@ if ((ssl_cert.contains("Sharp Corporation") && ssl_cert.contains("Document Syste
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("Source Technologies")) return true;
+if (asset.hasVulnWithResults(27113,"Source Technologies")) return true;
 
 // Search SNMP info
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Source Technologies")) return true;
+if (asset.hasVulnWithResults(78000,"Source Technologies")) return true;
 
 // Search Telnet
-telnet = asset.resultsForQid(38007L);
-if (telnet.contains("Source Technologies")) return true;
+if (asset.hasVulnWithResults(38007,"Source Technologies")) return true;
 
 
 
@@ -451,16 +368,13 @@ if (telnet.contains("Source Technologies")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("TopAccess")) return true;
+if (asset.hasVulnWithResults(12230,"TopAccess")) return true;
 
 // Search the redirected web page
-redir_web_page = asset.resultsForQid(13910L);
-if (redir_web_page.contains("TopAccess")) return true;
+if (asset.hasVulnWithResults(13910,"TopAccess")) return true;
 
 // Search the SNMP info
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("TOSHIBA e-STUDIO")) return true;
+if (asset.hasVulnWithResults(78000,"TOSHIBA e-STUDIO")) return true;
 
 
 
@@ -469,22 +383,18 @@ if (snmp.contains("TOSHIBA e-STUDIO")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Fuji Xerox Co") || default_web_page.contains("XEROX WORKCENTRE") || default_web_page.contains("XEROX ColorQube") || default_web_page.contains("/stat/index.php?tab=status")) return true;
+if (asset.hasVulnWithResults(12230,"Fuji Xerox Co") || asset.hasVulnWithResults(12230,"XEROX WORKCENTRE") || asset.hasVulnWithResults(12230,"XEROX ColorQube") || asset.hasVulnWithResults(12230,"/stat/index.php?tab=status")) return true;
 
 // Search FTP response
-ftp_response = asset.resultsForQid(27113L);
-if (ftp_response.contains("Dell") && ftp_response.contains("Laser")) return false;
-if (ftp_response.contains("XEROX") || ftp_response.contains("Xerox")) return true;
+if (asset.hasVulnWithResults(27113,"Dell") && asset.hasVulnWithResults(27113,"Laser")) return false;
+if (asset.hasVulnWithResults(27113,"XEROX") || asset.hasVulnWithResults(27113,"Xerox")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Dell") && snmp.contains("Laser")) return false;
-if (snmp.contains("Xerox WorkCentre")) return true;
+if (asset.hasVulnWithResults(78000,"Dell") && asset.hasVulnWithResults(78000,"Laser")) return false;
+if (asset.hasVulnWithResults(78000,"Xerox WorkCentre")) return true;
 
 // MAC address
-mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("FUJI-XEROX") || (snmp.contains("XEROX CORPORATION") && !snmp.contains("00:00:00:00:00:00"))) return true;
+if (asset.hasVulnWithResults(43007,"FUJI-XEROX") || (asset.hasVulnWithResults(43007,"XEROX CORPORATION") && !asset.hasVulnWithResults(43007,"00:00:00:00:00:00"))) return true;
 
 if (asset.hasAnyVuln([45147,45149,45148])) return true;
 
@@ -495,17 +405,13 @@ if (asset.hasAnyVuln([45147,45149,45148])) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Zebra Technologies") || default_web_page.contains("ZEBRA.COM")) return true;
+if (asset.hasVulnWithResults(12230,"Zebra Technologies") || asset.hasVulnWithResults(12230,"ZEBRA.COM")) return true;
 
 // Search MAC address
-mac = asset.resultsForQid(43007L);
-if (mac.contains("Zebra Technologies")) return true;
+if (asset.hasVulnWithResults(43007,"Zebra Technologies")) return true;
 
 // SNMP response
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("ZebraNet")) return true;
+if (asset.hasVulnWithResults(78000,"ZebraNet")) return true;
 
 // Telnet
-telnet = asset.resultsForQid(38007L);
-if (telnet.contains("ZebraNet")) return true;
+if (asset.hasVulnWithResults(38007,"ZebraNet")) return true;
