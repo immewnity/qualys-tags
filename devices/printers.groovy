@@ -48,6 +48,11 @@ if (asset.hasVulnWithResults(27113,"Canon") && asset.hasVulnWithResults(27113,"P
 // Search the web server version
 if (asset.hasVulnWithResults(86000,"CANON HTTP Server")) return true;
 
+if (asset.hasVulnWithResults(12230,"view=normal;path=/")) return true;
+if (asset.hasVulnWithResults(13910,"Copyright CANON")) return true;
+if (asset.hasVulnWithResults(13910,"MF620C Series")) return true;
+if (asset.hasVulnWithResults(13910,"canonlogo.png")) return true;
+
 
 
 /* Dell printers */
@@ -230,7 +235,7 @@ if (asset.hasVulnWithResults(12230,"/cgi-bin/dynamic/topbar.html") || asset.hasV
 if (asset.hasVulnWithResults(27113,"Lexmark")) return true;
 
 // Search SSL cert
-if (asset.hasVulnWithResults(86002,"organizationalUnitName PS&SD") && asset.hasVulnWithResults(86002,"organizationName Lexmark")) return true;
+if (asset.hasVulnWithResults(86002,"PS&SD") || asset.hasVulnWithResults(86002,"Lexmark")) return true;
 
 if (asset.hasAnyVuln([43505,38715])) return true;
 
@@ -308,6 +313,8 @@ if (asset.hasVulnWithResults(43007,"RICOH COMPANY")) return true;
 
 // Autocomplete
 if (asset.hasVulnWithResults(36729,"/images/RICOH.gif") || asset.hasVulnWithResults(36729,"Web Image Monitor") || (asset.hasVulnWithResults(36729,"websys") && asset.hasVulnWithResults(36729,"webArch"))) return true;
+
+if (asset.hasVulnWithResults(86002,"RICOH COMPANY")) return true;
 
 
 
