@@ -32,6 +32,9 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasAnyVuln([256546,256558,256581,256604,256616,256622,256645,256716,256718,256734,256736,256739,256773,256782,256796,256828,256897,256904,256916,256934,256965,257035,257047,257070,257073,257092])) return true;
 
+if (asset.hasVulnWithResults(45294,"CentOS-Base.repo")) return true;
+if (asset.hasVulnWithResults(45353,"kbuilder.bsys.centos.org")) return true;
+
 
 
 /* Debian */
@@ -62,15 +65,23 @@ if (sources_list.contains("Debian GNU")) return true;
 
 
 
+/* FreeBSD */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(38293,"FreeBSD")) return true;
+
+
+
 /* macOS */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if (asset.hasAnyVuln([43566,43110,375113,45072,45238,374668,373187,374335,375114,373498,374919,45542])) return true;
+if (asset.hasAnyVuln([43566,43110,375113,45072,45238,374668,373187,374335,375114,373498,374919,45542,45558])) return true;
 
-// VNC Banner
-vnc_banner = asset.resultsForQid(38062L);
-if (vnc_banner.contains("RFB 003.889")) return true;
+if (asset.hasVulnWithResults(38062,"RFB 003.889")) return true;
+
+if (asset.hasVulnWithResults(43007,"ac:de:48:00:11:22")) return true;
 
 
 
@@ -108,6 +119,16 @@ if (webpage.contains("/mana/mana/menu.mana")) return true;
 
 
 
+/* OpenVMS */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// NTP information
+ntp_info = asset.resultsForQid(38293L);
+if (ntp_info.contains("OpenVMS")) return true;
+
+
+
 /* Oracle Linux */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -121,6 +142,8 @@ if (asset.hasAnyVuln([159318,159338,159258,159310,159308,159329,159000,159112,15
 // Unix services
 unix_services = asset.resultsForQid(45294L);
 if (unix_services.contains("ol-consolebaud.service")) return true;
+
+if (asset.hasVulnWithResults(86000,"Oracle Linux")) return true;
 
 
 
@@ -137,6 +160,8 @@ yum_repos = asset.resultsForQid(45294L);
 if (yum_repos.contains("Red Hat Enterprise Linux") || yum_repos.contains("Managed by (rhsm) subscription-manager")) return true;
 
 if (asset.hasAnyVuln([239506,239541,239467,239535,239540,375544,239539,239546,239524,239534,239403,239339,239379,239202])) return true;
+
+if (asset.hasVulnWithResults(38007,"Red Hat Linux release")) return true;
 
 
 
