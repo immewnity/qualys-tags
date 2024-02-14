@@ -47,6 +47,21 @@ if (default_web.contains("chorin-webapp")) return true;
 
 
 
+/* Citrix NetScaler ADC */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([48183,10030,106157])) return true;
+
+if (asset.hasVulnWithResults(12230,"<span>NetScaler ADC</span>")) return true;
+if (asset.hasVulnWithResults(13910,"<span>NetScaler ADC</span>")) return true;
+if (asset.hasVulnWithResults(86002,"Citrix ANG")) return true;
+if (asset.hasVulnWithResults(86002,"Citrix ADM")) return true;
+if (asset.hasVulnWithResults(12230,"ns_logo2_color_negative")) return true;
+if (asset.hasVulnWithResults(13910,"ns_logo2_color_negative")) return true;
+
+
+
 /* Dell iDRAC */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -91,6 +106,18 @@ if (asset.hasAnyVuln([730068,13306,13358,13492,13359,43572,43578,13493,43557,730
 
 
 
+/* HP ScanJet document scanner */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the web page
+if (asset.hasVulnWithResults(12230,"HP ScanJet")) return true;
+if (asset.hasVulnWithResults(13910,"HP ScanJet")) return true;
+if (asset.hasVulnWithResults(13531,"HP ScanJet")) return true;
+if (asset.hasVulnWithResults(86565,"HP ScanJet")) return true;
+
+
+
 /* HP StorageWorks MSA */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -129,21 +156,21 @@ if (default_web_page.contains("HPE System Management") || default_web_page.conta
 
 
 
-/* JACE 8000 IoT controller */
+/* Tridium Niagara / JACE 8000 IoT controller */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Default web page
-default_web = asset.resultsForQid(12230L);
-if (default_web.contains("Baja-Station-Brand") && default_web.contains("Niagara-HostId: Qnx-TITAN")) return true;
+if (asset.hasVulnWithResults(12230,"Baja-Station-Brand") && asset.hasVulnWithResults(12230,"Niagara-HostId")) return true;
 
 // Redirected web page
-redirect = asset.resultsForQid(13910L);
-if (redirect.contains("Baja-Station-Brand") && redirect.contains("Niagara-HostId: Qnx-TITAN")) return true;
+if (asset.hasVulnWithResults(13910,"Baja-Station-Brand") && asset.hasVulnWithResults(13910,"Niagara-HostId")) return true;
 
 // HTTP response method
-http_header = asset.resultsForQid(48118L);
-if (http_header.contains("Baja-Station-Brand") && http_header.contains("Niagara-HostId: Qnx-TITAN")) return true;
+if (asset.hasVulnWithResults(48118,"Baja-Station-Brand") && asset.hasVulnWithResults(48118,"Niagara-HostId")) return true;
+
+// SSL certificate
+if (asset.hasVulnWithResults(86002,"Tridium") && asset.hasVulnWithResults(86002,"Niagara4")) return true;
 
 
 
@@ -253,22 +280,28 @@ if (admin.contains("Enhanced Scanning Technology")) return true;
 
 
 
-/* Tyco iSTAR door controller (likely will flag on other Tyco/Sensormatic/Johnson Controls products) */
+/* Tyco iSTAR door controller (may flag on other Tyco/Sensormatic/Johnson Controls products) */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("VideoEdge")) return false;
+if (asset.hasVulnWithResults(12230,"VideoEdge")) return false;
 
 // Search the redirected default web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("VideoEdge")) return false;
+if (asset.hasVulnWithResults(13910,"VideoEdge")) return false;
 
 // Search the MAC address
-mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("DIGITAL-LOGIC")) return false;
-if (mac_addr.contains(" 00:50:F9:")) return true;
+if (asset.hasVulnWithResults(43007,"DIGITAL-LOGIC")) return false;
+if (asset.hasVulnWithResults(43007," 00:50:F9:")) return true;
+if (asset.hasVulnWithResults(86002,"iSTAR Ultra")) return true;
+
+
+
+/* Tyco NVR */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"Tyco International") && asset.hasVulnWithResults(86002,"American Dynamics") && asset.hasVulnWithResults(86002,"DNS:NVR")) return true;
 
 
 
@@ -296,49 +329,68 @@ if (default_web_page.contains("VideoEdge")) return true;
 
 
 
-/* VMWare SRM */
+/* VMware ESXi*/
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("426 Upgrade Required") && default_web_page.contains("server: envoy")) return true;
+if (asset.hasVulnWithResults(45017,"VMware ESXi")) return true;
+if (asset.hasVulnWithResults(45017,":vmware:esxi:")) return true;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("VMware") && ssl_cert.contains("SRM")) return true;
+if (asset.hasAnyVuln([45589,105608,105580,105767,105769,105928,106098,106100,216108,216090,216091,216085,216086,216087,216088,216089,216083,216082,216081,216080,120077,216015,216014,216013,216012,216011,216005,216019,216022,216039,216043,216055,216062,216066,216009,216006,216010,216007,216004,216016,216018,216021,216046,216042,216050,216060,216065,216112,216041,216056,216003,216017,216020,216023,216038,216048,216054,216070,216078,216094,216002,216111,216049,216063,216076,216040,216053,216058,216069,216072,216084,216093,216073,216110,216139,216154,216152,216159,216164,216059,216071,216077,216099,216102,216115,216120,216129,216064,216092,216001,216109,216119,216118,216117,216131,216138,216151,216162,216200,216165,216175,216184,216191,216221,216197,216210,216217,216100,216103,216114,216140,216142,216150,216163,216166,216178,216201,216174,216185,216208,216211,216190,216198,216196,216215,216218,216223,216227,216233,216237,216241,216249,216252,216258,216264,216278,216281,216294,216308,216305,216291,216298,216311,216116,216130,216156,216167,216172,216202,216173,216186,216187,216209,216231,216189,216216,216245,216219,216230,216224,216228,216232,216236,216242,216251,216248,216257,216262,216279,216292,216295,216297,216309,216304,216212,216312,216229,216235,216243,216244,216250,216247,216256,216282,216263,216283,216280,216284,216293,216296,216299,216310,216303,216301,216302,11507])) return true;
 
-
-
-/* VMWare vCenter */
-
-if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
-
-
-// Search the redirected default web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("ID_VC_Welcome")) return true;
-
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("vCenterServer")) return true;
+if (asset.hasVulnWithResults(12230,"ID_EESX_Welcome")) return true;
+if (asset.hasVulnWithResults(12230,"VMware ESXi is virtual infrastructure software for partitioning")) return true;
+if (asset.hasVulnWithResults(13910,"ID_EESX_Welcome")) return true;
+if (asset.hasVulnWithResults(13910,"VMware ESXi is virtual infrastructure software for partitioning")) return true;
+if (asset.hasVulnWithResults(86002,"vmca@vmware.com")) return true;
+if (asset.hasVulnWithResults(86002,"VMware ESX Server Default Certificate")) return true;
 
 
 
-/* VMWare vSphere */
+/* VMware NSX */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if (asset.hasAnyVuln([216079])) return true;
+if (asset.hasVulnWithResults(48118,"/nsx/index.html")) return true;
+if (asset.hasVulnWithResults(48118,"Server: NSX")) return true;
+if (asset.hasVulnWithResults(86565,"/nsx/index.html")) return true;
+if (asset.hasVulnWithResults(86565,"Server: NSX")) return true;
+if (asset.hasVulnWithResults(12230,"/nsx/index.html")) return true;
+if (asset.hasVulnWithResults(12230,"Server: NSX")) return true;
+if (asset.hasVulnWithResults(13910,"VMware NSX | Login")) return true;
+if (asset.hasVulnWithResults(13910,"VMware&nbsp;NSX")) return true;
 
-// Search the redirected default web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains(":443/websso/") || default_web_page.contains(":5480") || default_web_page.contains("vsphere-client") || default_web_page.contains("ID_BrowseVCDatacenters")) return true;
 
-// Search the LDAP info
-ldap = asset.resultsForQid(45106L);
-if (ldap.contains("dc=vsphere,dc=local")) return true;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("domainComponent vsphere") || ssl_cert.contains("vCenterServer")) return true;
+/* VMWare SRM (Site Recovery Manager) */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(48118,"/configure/app/landing/index.html")) return true;
+if (asset.hasVulnWithResults(86565,"/configure/app/landing/index.html")) return true;
+if (asset.hasVulnWithResults(12230,"/configure/app/landing/index.html")) return true;
+if (asset.hasVulnWithResults(13910,"/configure/app/landing/index.html")) return true;
+
+
+
+/* VMWare vCenter Server */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(45017,"VMware vCenter Server Appliance")) return true;
+if (asset.hasVulnWithResults(45017,"vcenter_server_appliance")) return true;
+if (asset.hasVulnWithResults(12230,"ID_BrowseVCDatacenters")) return true;
+if (asset.hasVulnWithResults(13910,"ID_BrowseVCDatacenters")) return true;
+
+if (asset.hasAnyVuln([216267,216271,216285,216288,216300,216240,216123,216276,216273,216193,216205,216246,216214,216222,216254,216260,216266,216270,216286,216289,216306,216157,216171,216239,216275,216272,216253,216259,216265,216268,216287,216290,216307,216314,216317,216238,216313,216315,216316,216141,216153,216106,730102,11699,121532])) return true;
+if (asset.hasAnyVuln([105940,106099,106101,216220,216095,216096,216097,216121,216098,216104,216105,216122,121274,216225,119075,216134,216135,216136,216127,216133,216149,216161,216168,216126,216124,216148,216160,216169,216194,216203,216137,216132,216277,216274,216125,216128,216170,216147,216158,216192,216195,216213,216255,216261])) return true;
+
+
+
+/* VMWare vSphere Replication */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(13910,"VMware vSphere Replication")) return true;
+
+if (asset.hasAnyVuln([375829])) return true;
