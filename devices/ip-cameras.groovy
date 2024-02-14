@@ -76,10 +76,10 @@ if (asset.hasVulnWithResults(11827,"Hikvision-Webs")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-if (asset.hasVulnWithResults(12230,"lgnLocalStorageGet") || asset.hasVulnWithResults(12230,"randomish number that can be added to URLS") || asset.hasVulnWithResults(12230,"url=/guest/main.html")) return true;
+if (asset.hasVulnWithResults(12230,"lgnLocalStorageGet") || asset.hasVulnWithResults(12230,"randomish number that can be added to URLS") || asset.hasVulnWithResults(12230,"url=/guest/main.html") || asset.hasVulnWithResults(12230,"below field is just to fake browser not to autofill values")) return true;
 
 // Search the redirected default web page
-if (asset.hasVulnWithResults(13910,"lgnLocalStorageGet") || asset.hasVulnWithResults(13910,"randomish number that can be added to URLS") || asset.hasVulnWithResults(13910,"url=/guest/main.html")) return true;
+if (asset.hasVulnWithResults(13910,"lgnLocalStorageGet") || asset.hasVulnWithResults(13910,"randomish number that can be added to URLS") || asset.hasVulnWithResults(13910,"url=/guest/main.html") || asset.hasVulnWithResults(13910,"below field is just to fake browser not to autofill values")) return true;
 
 // Search the SSL certificate
 if (asset.hasVulnWithResults(82002,"Tyco Security Products")) return true;
@@ -95,7 +95,7 @@ if (asset.hasVulnWithResults(12230,"prew_downloadplugin") || asset.hasVulnWithRe
 
 
 
-/* Samsung */
+/* Samsung / Wisenet */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
@@ -107,6 +107,9 @@ if (asset.hasVulnWithResults(78000,"SAMSUNG iPolis")) return true;
 
 // Search the redirected default web page
 if (asset.hasVulnWithResults(13910,"home/monitoring.cgi")) return true;
+
+if (asset.hasVulnWithResults(12230,"/wmf/index.html")) return true;
+if (asset.hasVulnWithResults(13910,"/wmf/index.html")) return true;
 
 
 
