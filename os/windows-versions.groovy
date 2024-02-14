@@ -238,7 +238,7 @@ if (win_prod_type.contains("CurrentBuildNumber = " + Win10BuildNo) || win_prod_t
 
 
 
-/* Windows version 21H2 */
+/* Windows version 22H2 */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
@@ -249,3 +249,16 @@ String Win11BuildNo = "22621";
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
 if (win_prod_type.contains("CurrentBuildNumber = " + Win10BuildNo) || win_prod_type.contains("CurrentBuildNumber = " + Win11BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
+
+
+
+/* Windows version 23H2 */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+String DisplayVersion = "23H2";
+String Win11BuildNo = "22631";
+
+// Windows Product Type
+win_prod_type = asset.resultsForQid(90107L);
+if (win_prod_type.contains("CurrentBuildNumber = " + Win11BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
