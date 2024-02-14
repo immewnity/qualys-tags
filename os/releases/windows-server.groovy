@@ -52,7 +52,7 @@ if(asset.hasAnyVuln([105859,105497,90742,45345])) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if(asset.hasAnyVuln([45350,45351])) return true;
+if(asset.hasAnyVuln([45350,45351,106163])) return true;
 
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
@@ -64,7 +64,7 @@ if ((win_prod_type.contains("ProductType = ServerNT") || win_prod_type.contains(
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if(asset.hasAnyVuln([45348])) return true;
+if(asset.hasAnyVuln([45348,106164])) return true;
 
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
@@ -101,6 +101,18 @@ if (win_prod_type.contains("ProductName = Windows Server 2019")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
+if(asset.hasAnyVuln([45570])) return true;
+
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
 if (win_prod_type.contains("ProductName = Windows Server 2022")) return true;
+
+
+
+/* Windows Server 2025 */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Windows Product Type
+win_prod_type = asset.resultsForQid(90107L);
+if (win_prod_type.contains("ProductName = Windows Server 2025")) return true;
