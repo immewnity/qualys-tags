@@ -11,6 +11,43 @@
 
 
 
+/* Cisco Unity Connection */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(12230,"cuadmin/home.do")) return true;
+if (asset.hasVulnWithResults(13910,"cuadmin/home.do")) return true;
+if (asset.hasVulnWithResults(86585,"cuadmin/home.do")) return true;
+
+
+
+/* Dameware */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(90065,"dwmrcs")) return true;
+if (asset.hasVulnWithResults(90065,"DWMRCS")) return true;
+if (asset.hasVulnWithResults(90065,"dntus26")) return true;
+if (asset.hasVulnWithResults(90065,"DNTUS26")) return true;
+if (asset.hasVulnWithResults(90065,"DameWare")) return true;
+if (asset.hasVulnWithResults(90065,"Dameware")) return true;
+
+if (asset.hasVulnWithResults(45414,"dwmrcs")) return true;
+if (asset.hasVulnWithResults(45414,"DWMRCS")) return true;
+if (asset.hasVulnWithResults(45414,"dntus26")) return true;
+if (asset.hasVulnWithResults(45414,"DNTUS26")) return true;
+if (asset.hasVulnWithResults(45414,"DameWare")) return true;
+if (asset.hasVulnWithResults(45414,"Dameware")) return true;
+
+if (asset.hasVulnWithResults(90235,"Dameware")) return true;
+if (asset.hasVulnWithResults(45520,"Dameware")) return true;
+if (asset.hasVulnWithResults(372889,"Dameware")) return true;
+if (asset.hasVulnWithResults(90235,"DameWare")) return true;
+if (asset.hasVulnWithResults(45520,"DameWare")) return true;
+if (asset.hasVulnWithResults(372889,"DameWare")) return true;
+
+
+
 /* IBM WebSphere */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -48,6 +85,30 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 // SMTP banner
 smtp_banner = asset.resultsForQid(74042L);
 if (smtp_banner.contains("NT-ESMTP Server X1")) return true;
+
+
+
+/* Kentico CMS */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(12230,"__CMSCsrfToken")) return true;
+if (asset.hasVulnWithResults(12230,"CMSPages")) return true;
+if (asset.hasVulnWithResults(12230,"this error is probably caused by cross-domain access")) return true;
+if (asset.hasVulnWithResults(12230,"Kentico Free Edition after registration at")) return true;
+if (asset.hasVulnWithResults(12230,"CMSPages")) return true;
+if (asset.hasVulnWithResults(13910,"__CMSCsrfToken")) return true;
+if (asset.hasVulnWithResults(13910,"CMSPages")) return true;
+if (asset.hasVulnWithResults(13910,"this error is probably caused by cross-domain access")) return true;
+if (asset.hasVulnWithResults(13910,"Kentico Free Edition after registration at")) return true;
+if (asset.hasVulnWithResults(13910,"CMSPages")) return true;
+if (asset.hasVulnWithResults(48118,"CMSPreferredCulture")) return true;
+if (asset.hasVulnWithResults(90235,"Kentico software")) return true;
+if (asset.hasVulnWithResults(90235,"Kentico Xperience")) return true;
+if (asset.hasVulnWithResults(12230,"http://www.kentico.com/download/free-edition.aspx")) return true;
+if (asset.hasVulnWithResults(13910,"http://www.kentico.com/download/free-edition.aspx")) return true;
+if (asset.hasVulnWithResults(150010,"http://www.kentico.com/download/free-edition.aspx")) return true;
+if (asset.hasVulnWithResults(150247,"Kentico CMS")) return true;
 
 
 
@@ -112,24 +173,29 @@ if (asset.hasAnyVuln([12049,86484,45104,86693,11773,105777,105873,105453,105454,
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/RDWeb\"") || default_web_page.contains("Error: Unable to display RD Web Access") || default_web_page.contains("/TSWeb\"") || default_web_page.contains("/tsweb\"") || default_web_page.contains("/rdweb\"") || default_web_page.contains("CheckBoxAutoLogon")) return true;
+if (asset.hasVulnWithResults(12230,"/RDWeb\"") || asset.hasVulnWithResults(12230,"Error: Unable to display RD Web Access") || asset.hasVulnWithResults(12230,"/TSWeb\"") || asset.hasVulnWithResults(12230,"/tsweb\"") || asset.hasVulnWithResults(12230,"/rdweb\"") || asset.hasVulnWithResults(12230,"CheckBoxAutoLogon")) return true;
 
 // Search the redirected default web page
-redirected_web_page = asset.resultsForQid(13910L);
-if (redirected_web_page.contains("/RDWeb\"") || redirected_web_page.contains("Error: Unable to display RD Web Access") || redirected_web_page.contains("/TSWeb\"") || redirected_web_page.contains("/tsweb\"") || redirected_web_page.contains("/rdweb\"") || redirected_web_page.contains("CheckBoxAutoLogon")) return true;
+if (asset.hasVulnWithResults(13910,"/RDWeb\"") || asset.hasVulnWithResults(13910,"Error: Unable to display RD Web Access") || asset.hasVulnWithResults(13910,"/TSWeb\"") || asset.hasVulnWithResults(13910,"/tsweb\"") || asset.hasVulnWithResults(13910,"/rdweb\"") || asset.hasVulnWithResults(13910,"CheckBoxAutoLogon")) return true;
 
 // Directories requiring auth
-auth_directories = asset.resultsForQid(86671L);
-if (auth_directories.contains("/RDWeb") || auth_directories.contains("/TSWeb") || auth_directories.contains("/tsweb") || auth_directories.contains("/rdweb")) return true;
+if (asset.hasVulnWithResults(86671,"/RDWeb") || asset.hasVulnWithResults(86671,"/TSWeb") || asset.hasVulnWithResults(86671,"/tsweb") || asset.hasVulnWithResults(86671,"/rdweb")) return true;
 
 // HTTP response method
-http_method = asset.resultsForQid(48118L);
-if (http_method.contains("/RDWeb") || http_method.contains("/TSWeb") || http_method.contains("/tsweb") || http_method.contains("/rdweb")) return true;
+if (asset.hasVulnWithResults(48118,"/RDWeb") || asset.hasVulnWithResults(48118,"/TSWeb") || asset.hasVulnWithResults(48118,"/tsweb") || asset.hasVulnWithResults(48118,"/rdweb")) return true;
 
 // Directories exist
-directories_exist = asset.resultsForQid(86672L);
-if ((directories_exist.contains("/RDWeb/") || directories_exist.contains("/TSWeb/") || directories_exist.contains("/tsweb/") || directories_exist.contains("/rdweb/")) && !(directories_exist.contains("/invisionboard/") || directories_exist.contains("phpmynewsletter"))) return true;
+if ((asset.hasVulnWithResults(86672,"/RDWeb/") || asset.hasVulnWithResults(86672,"/TSWeb/") || asset.hasVulnWithResults(86672,"/tsweb/") || asset.hasVulnWithResults(86672,"/rdweb/")) && !(asset.hasVulnWithResults(86672,"/invisionboard/") || asset.hasVulnWithResults(86672,"phpmynewsletter"))) return true;
+
+if (asset.hasAnyVuln([48162])) return true;
+
+
+
+/* Pure-FTPd */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(27113,"Pure-FTPd [privsep]")) return true;
 
 
 
