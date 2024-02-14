@@ -29,6 +29,21 @@ if (ssl_cert.contains("Accops Technologies") || ssl_cert.contains("accops.com"))
 
 
 
+/* Algo */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(12230,"http://www.algosolutions.com/register")) return true;
+if (asset.hasVulnWithResults(13910,"http://www.algosolutions.com/register")) return true;
+if (asset.hasVulnWithResults(11827,"http://www.algosolutions.com/register")) return true;
+
+if (asset.hasVulnWithResults(78000,"Algo Communication Products")) return true;
+if (asset.hasVulnWithResults(78000,"support@algosolutions.com")) return true;
+
+if (asset.hasVulnWithResults(43007,"00:22:EE:")) return true;
+
+
+
 /* Apple */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -55,17 +70,24 @@ if (http_response.contains("AirTunes")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
+if (asset.hasAnyVuln([45601])) return true;
+
 // Search the default web page after following redirects
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("Arista Command API") || default_web_page.contains("<title>Arista</title>") || default_web_page.contains("Arista Analytics Node")) return true;
+if (asset.hasVulnWithResults(13910,"Arista Command API")) return true;
+if (asset.hasVulnWithResults(13910,"<title>Arista</title>")) return true;
+if (asset.hasVulnWithResults(13910,"Arista Analytics Node")) return true;
 
-// Search the HTTP response
-http_response = asset.resultsForQid(48118L);
-if (http_response.contains("/explorer.html")) return true;
+if (asset.hasVulnWithResults(48118,"/explorer.html")) return true;
 
-// Search the SSL certificate
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Arista Networks")) return true;
+// Search the SSL cert
+if (asset.hasVulnWithResults(86002,"Arista Networks")) return true;
+if (asset.hasVulnWithResults(86002,"bigswitch.com")) return true;
+if (asset.hasVulnWithResults(86002,"Big Switch Networks")) return true;
+
+if (asset.hasVulnWithResults(12230,"/favicons/dmf/browserconfig.xml")) return true;
+if (asset.hasVulnWithResults(13910,"/favicons/dmf/browserconfig.xml")) return true;
+
+if (asset.hasVulnWithResults(12230,"/eapi/") && asset.hasVulnWithResults(12230,"Server: nginx")) return true;
 
 
 
@@ -75,33 +97,37 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasAnyVuln([45274])) return true;
 
+if (asset.hasVulnWithResults(12230,"/tips/welcome.action")) return true;
+if (asset.hasVulnWithResults(48118,"/tips/welcome.action")) return true;
+
 // Search the default web page after following redirects
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("arubanetworks") || default_web_page.contains("Aruba Networks") || default_web_page.contains("arubalp=") || default_web_page.contains("/nextgen/ui/index") || default_web_page.contains("Management by Central. No UI access.")) return true;
+if (asset.hasVulnWithResults(13910,"Management by Central. No UI access.")) return true;
+if (asset.hasVulnWithResults(13910,"/nextgen/ui/index")) return true;
+if (asset.hasVulnWithResults(13910,"arubanetworks")) return true;
+if (asset.hasVulnWithResults(13910,"Aruba Networks")) return true;
+if (asset.hasVulnWithResults(13910,"arubalp=")) return true;
+if (asset.hasVulnWithResults(13910,"cppmContent")) return true;
 
 // Search the SSL cert
 ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Aruba Networks") || (ssl_cert.contains("Aruba") && ssl_cert.contains("HPE") && ssl_cert.contains("Roseville"))) return true;
+if (asset.hasVulnWithResults(86002,"Aruba Networks")) return true;
+if ((ssl_cert.contains("Aruba") && ssl_cert.contains("HPE") && ssl_cert.contains("Roseville"))) return true;
 
 // SNMP data
-snmp = asset.resultsForQid(78000L);
-if (snmp.contains("Aruba ")) return true;
+if (asset.hasVulnWithResults(78000,"Aruba ")) return true;
 
 // Telnet
-telnet = asset.resultsForQid(38007L);
-if (telnet.contains("Aruba ")) return true;
+if (asset.hasVulnWithResults(38007,"Aruba ")) return true;
 
 // MAC address
-mac_addr = asset.resultsForQid(43007L);
-if (mac_addr.contains("10:4F:58:")) return true;
+if (asset.hasVulnWithResults(43007,"10:4F:58:")) return true;
 
 // SSH banner
-ssh = asset.resultsForQid(43007L);
-if (ssh.contains("SSH-2.0-Mocana SSH 6.3")) return true;
+if (asset.hasVulnWithResults(38050,"SSH-2.0-Mocana SSH 6.3")) return true;
 
 // HTTP unavailable
-unavail = asset.resultsForQid(86383L);
-if (unavail.contains("available only on Master IAP") || unavail.contains("arubanetworks")) return true;
+if (asset.hasVulnWithResults(86383,"available only on Master IAP")) return true;
+if (asset.hasVulnWithResults(86383,"arubanetworks")) return true;
 
 
 
@@ -138,6 +164,23 @@ if (imap.contains("CallPilot")) return true;
 smtp = asset.resultsForQid(74042L);
 if (smtp.contains("IP Office Voicemail Pro")) return true;
 
+// Search the SSL cert
+if (asset.hasVulnWithResults(86002,"AVAYA") || asset.hasVulnWithResults(86002,"Avaya Inc")) return true;
+
+
+
+/* Avigilon */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(12230,"It appears that the application isn't quite finished starting up.")) return true;
+if (asset.hasVulnWithResults(13910,"Avigilon Corporation")) return true;
+if (asset.hasVulnWithResults(13910,"Ic menu available")) return true;
+if (asset.hasVulnWithResults(13910,"Avigilon_logo")) return true;
+if (asset.hasVulnWithResults(13910,"It appears that the application isn't quite finished starting up.")) return true;
+
+if (asset.hasVulnWithResults(86002,"avigilon.com")) return true;
+
 
 
 /* Axway */
@@ -158,9 +201,8 @@ if (ssl_cert.contains("support@axway.com")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the HTTP response
-http_response = asset.resultsForQid(48118L);
-if (http_response.contains("nsbase_session")) return true;
+if (asset.hasVulnWithResults(48118,"nsbase_session")) return true;
+if (asset.hasVulnWithResults(48118,"Set-Cookie: ns_s=")) return true;
 
 
 
@@ -223,6 +265,7 @@ if (ike_service.contains("CheckPoint")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasAnyVuln([45306])) return false;
+
 if (asset.hasVulnWithResults(12230,"Cisco Unified IP Phone Cisco Communicator")) return false;
 if (asset.hasVulnWithResults(86565,"Cisco Unified IP Phone Cisco Communicator")) return false;
 if (asset.hasVulnWithResults(45331,"Cisco Unified IP Phone Cisco Communicator")) return false;
@@ -238,6 +281,7 @@ if (asset.hasVulnWithResults(13910,"Cisco Connection Online") || asset.hasVulnWi
 
 // Search the SSH banner
 if (asset.hasVulnWithResults(38050,"Cisco")) return true;
+if (asset.hasVulnWithResults(38050,"SSH-2.0-OpenSSH_5.5 FIPS")) return true;
 
 // Search the NTP data
 if (asset.hasVulnWithResults(38293,"cisco")) return true;
@@ -254,10 +298,42 @@ if (asset.hasVulnWithResults(38007,"Cisco Configuration")) return true;
 // Search the SIP information
 if (asset.hasVulnWithResults(38438,"Cisco-SIPGateway")) return true;
 
+// Search the SSL cert
+if (asset.hasVulnWithResults(86002,"TG SSL CA") || asset.hasVulnWithResults(86002,"/O=Cisco/")) return true;
+
 // Search the SMTP banner
 if (asset.hasVulnWithResults(74042,"UnityMailer")) return true;
 
-if (asset.hasAnyVuln([38211,43001,13605,13811,13488,13662,38673,38667,42395,38250,45172])) return true;
+if (asset.hasTag("Device: IP phone - Cisco")) return true;
+
+if (asset.hasAnyVuln([38211,43001,13605,13811,13488,13662,38673,38667,42395,38250,45172,45566,106173])) return true;
+
+
+
+/* Citrix */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([48183,10030,106202])) return true;
+
+if (asset.hasVulnWithResults(86002,"Citrix")) return true;
+if (asset.hasVulnWithResults(12230,"Citrix Login")) return true;
+if (asset.hasVulnWithResults(13910,"Citrix Login")) return true;
+if (asset.hasVulnWithResults(86002,"Citrix ADM")) return true;
+if (asset.hasVulnWithResults(86002,"Citrix ANG")) return true;
+
+if (asset.hasVulnWithResults(12230,"Trailing phrase after here")) return true;
+if (asset.hasVulnWithResults(13910,"Trailing phrase after here")) return true;
+if (asset.hasVulnWithResults(12230,"/logon/LogonPoint/tmindex.html")) return true;
+if (asset.hasVulnWithResults(13910,"/logon/LogonPoint/tmindex.html")) return true;
+if (asset.hasVulnWithResults(12230,"/vpn/resources.js")) return true;
+if (asset.hasVulnWithResults(13910,"/vpn/resources.js")) return true;
+if (asset.hasVulnWithResults(12230,"ns_logo2_color_negative")) return true;
+if (asset.hasVulnWithResults(13910,"ns_logo2_color_negative")) return true;
+if (asset.hasVulnWithResults(12230,"<span>NetScaler ADC</span>")) return true;
+if (asset.hasVulnWithResults(13910,"<span>NetScaler ADC</span>")) return true;
+if (asset.hasVulnWithResults(48118,"NSC_TEMP=xyz")) return true;
+if (asset.hasVulnWithResults(48118,"/logon/LogonPoint/tmindex.html")) return true;
 
 
 
@@ -266,8 +342,7 @@ if (asset.hasAnyVuln([38211,43001,13605,13811,13488,13662,38673,38667,42395,3825
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Crestron")) return true;
+if (asset.hasVulnWithResults(86002,"Crestron")) return true;
 
 // Search the MAC address
 mac = asset.resultsForQid(43007L);
@@ -289,6 +364,8 @@ if (model_info.contains("Dell ")) return true;
 
 chassis = asset.resultsForQid(43733L);
 if (chassis.contains("Dell Inc")) return true;
+
+if (asset.hasVulnWithResults(43007,"AC:1A:3D:")) return true;
 
 
 
@@ -350,9 +427,8 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 default_web_page = asset.resultsForQid(12230L);
 if (default_web_page.contains("Forcepoint") || default_web_page.contains("Websense")) return true;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Forcepoint") || ssl_cert.contains("Websense")) return true;
+if (asset.hasVulnWithResults(86002,"Forcepoint")) return true;
+if (asset.hasVulnWithResults(86002,"Websense")) return true;
 
 
 
@@ -360,17 +436,12 @@ if (ssl_cert.contains("Forcepoint") || ssl_cert.contains("Websense")) return tru
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Fortinet")) return true;
+if (asset.hasVulnWithResults(86002,"Fortinet")) return true;
 
-// Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Warning: this page requires Javascript. To correctly view, please enable it in your browser.")) return true;
+if (asset.hasAnyVuln([106199])) return true;
 
-// Search the redirected default web page
-redirected_web_page = asset.resultsForQid(13910L);
-if (redirected_web_page.contains("Warning: this page requires Javascript. To correctly view, please enable it in your browser.")) return true;
+if (asset.hasVulnWithResults(12230,"Warning: this page requires Javascript. To correctly view, please enable it in your browser.")) return true;
+if (asset.hasVulnWithResults(13910,"Warning: this page requires Javascript. To correctly view, please enable it in your browser.")) return true;
 
 
 
@@ -400,6 +471,8 @@ if (redirected_web_page.contains("Copyright Honeywell Inc")) return true;
 ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("Honeywell") || ssl_cert.contains("Maxpro_MAXPRO-NVR1")) return true;
 
+if (asset.hasVulnWithResults(86002,"Honeywell")) return true;
+
 
 
 /* HP */
@@ -419,8 +492,12 @@ redirected_webpage = asset.resultsForQid(13910L);
 if (redirected_webpage.contains("HPE Virtual Connect") || redirected_webpage.contains("HP Virtual Connect") || redirected_webpage.contains("Hewlett Packard") || redirected_webpage.contains("Hewlett-Packard") || redirected_webpage.contains("login.ssi")) return true;
 
 // SSL Certificate
-ssl_cert = asset.resultsForQid(12230L);
+ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("Hewlett Packard") || ssl_cert.contains("Hewlett-Packard") || ssl_cert.contains("Virtual Connect Manager")) return true;
+
+// Search the SSL cert
+if (asset.hasVulnWithResults(86002,"Hewlett-Packard")) return true;
+if (asset.hasVulnWithResults(86002,"HP Inc.")) return true;
 
 if (asset.hasVulnWithResults(78000,"HP VC FlexFabric")) return true;
 
@@ -446,15 +523,16 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 default_web_page = asset.resultsForQid(12230L);
 if (default_web_page.contains("<title>IDEMIA</title>") || default_web_page.contains("MA5G_general_configurations")) return true;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("MORPHOACCESS")) return true;
+if (asset.hasVulnWithResults(86002,"MORPHOACCESS")) return true;
+if (asset.hasVulnWithResults(86002,"IDEMIA")) return true;
 
 
 
 /* Juniper Networks */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([45603,106184,106178,106176,106179,106181,106183,106174,106182,106175,106180,106177])) return true;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
@@ -502,6 +580,19 @@ if (snmp.contains("Meraki")) return true;
 
 
 
+/* Mitel */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(74042,"Mitel5000")) return true;
+if (asset.hasVulnWithResults(86002,"Mitel Networks Corporation")) return true;
+if (asset.hasVulnWithResults(86002,"www.mitel.com")) return true;
+if (asset.hasVulnWithResults(12230,"MiVoice Office")) return true;
+if (asset.hasVulnWithResults(13910,"MiVoice Office")) return true;
+if (asset.hasVulnWithResults(48144,"Mitel")) return true;
+
+
+
 /* NEC */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -516,31 +607,36 @@ if (ssl_cert.contains("NEC Corporation")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("/sysmgr/SysMgr.html") || default_web_page.contains("/sysmgr/v4/") || (default_web_page.contains("LANG_LOGIN_LOGIN") && default_web_page.contains("ATEN International") && default_web_page.contains("images/logo.gif"))) return true;
-
-// Search the redirected web page
-redirected_page = asset.resultsForQid(13910L);
-if (redirected_page.contains("LANG_LOGIN_LOGIN") && redirected_page.contains("ATEN International") && redirected_page.contains("images/logo.gif")) return true;
-
-// Search the HTTP response
-http_response = asset.resultsForQid(48118L);
-if (http_response.contains("/sysmgr/SysMgr.html") || http_response.contains("UnifiedManager") || http_response.contains("/sysmgr/v4/")) return true;
-
-// Check the OS detection
-os_name = asset.getOperatingSystem();
-if (os_name.contains("NetApp") || os_name.contains("Data ONTAP")) return true;
-
-// iSCSI authentication
-iscsi = asset.resultsForQid(38660L);
-if (iscsi.contains(".com.netapp:")) return true;
-
-// Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("NetApp Data Broker") || ssl_cert.contains("UnifiedManager")) return true;
+if (asset.hasVulnWithResults(12230,"data-netapp-id")) return true;
+if (asset.hasVulnWithResults(13910,"data-netapp-id")) return true;
+if (asset.hasVulnWithResults(12230,"X-Powered-By: NetApp Application Server")) return true;
+if (asset.hasVulnWithResults(13910,"X-Powered-By: NetApp Application Server")) return true;
+if (asset.hasVulnWithResults(12230,"Server: NetApp")) return true;
+if (asset.hasVulnWithResults(13910,"Server: NetApp")) return true;
+if (asset.hasVulnWithResults(38293,"Data ONTAP")) return true;
+if (asset.hasVulnWithResults(12230,"/sysmgr/v4/")) return true;
+if (asset.hasVulnWithResults(13910,"/sysmgr/v4/")) return true;
+if (asset.hasVulnWithResults(48118,"/sysmgr/v4/")) return true;
+if (asset.hasVulnWithResults(12230,"/sysmgr/SysMgr.html")) return true;
+if (asset.hasVulnWithResults(13910,"/sysmgr/SysMgr.html")) return true;
+if (asset.hasVulnWithResults(48118,"/sysmgr/SysMgr.html")) return true;
+if (asset.hasVulnWithResults(48118,"UnifiedManager")) return true;
+if (asset.hasVulnWithResults(38660,".com.netapp:")) return true;
+if (asset.hasVulnWithResults(86002,"UnifiedManager")) return true;
+if (asset.hasVulnWithResults(86002,"NetApp Data Broker")) return true;
 
 if (asset.hasAnyVuln([62044,11956,38762,38758,38749,38753])) return true;
+
+
+
+/* Netgear */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([45481])) return true;
+
+if (asset.hasVulnWithResults(12230,"Netgear Page Title")) return true;
+if (asset.hasVulnWithResults(13910,"Netgear Page Title")) return true;
 
 
 
@@ -558,23 +654,24 @@ if (default_web_page.contains("Opengear.com")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
+if (asset.hasTag("Device: Oracle Enterprise Session Border Controller")) return true;
+
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("Oracle ESBC")) return true;
+if (asset.hasVulnWithResults(12230,"Oracle ESBC")) return true;
 
 // Search the redirected web page
-redirected_page = asset.resultsForQid(13910L);
-if (redirected_page.contains("Oracle ESBC")) return true;
+if (asset.hasVulnWithResults(13910,"Oracle ESBC")) return true;
 
 // Search nginx vuln info
-nginx_vuln = asset.resultsForQid(730096L);
-if (nginx_vuln.contains("Oracle ESBC")) return true;
+if (asset.hasVulnWithResults(730096,"Oracle ESBC")) return true;
 
 
 
 /* Palo Alto Networks */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasAnyVuln([45602])) return true;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
@@ -641,6 +738,37 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 // Telnet banner
 telnet = asset.resultsForQid(38007L);
 if (telnet.contains("SAMSUNG ELECTRONICS")) return true;
+
+if (asset.hasVulnWithResults(86002,"SmartViewSDK")) return true;
+if (asset.hasVulnWithResults(12230,"/home/monitoring.cgi")) return true;
+if (asset.hasVulnWithResults(13910,"/home/monitoring.cgi")) return true;
+if (asset.hasVulnWithResults(12230,"/wmf/index.html")) return true;
+if (asset.hasVulnWithResults(13910,"/wmf/index.html")) return true;
+
+
+
+/* Schneider Electric / APC */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Search the SSL cert
+if (asset.hasVulnWithResults(86002,"Schneider Electric") || asset.hasVulnWithResults(86002,"WebStation is using modern browser features for better performance and a better user experience")) return true;
+
+if (asset.hasVulnWithResults(43007,"AMERICAN POWER CONVERSION")) return true;
+if (asset.hasVulnWithResults(43007,"00:C0:B7:")) return true;
+if (asset.hasVulnWithResults(78000,"APC Web/SNMP")) return true;
+if (asset.hasVulnWithResults(78000,"apc_hw")) return true;
+
+if (asset.hasVulnWithResults(86002,"American Power Conversion")) return true;
+
+
+
+/* Silex */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(27113,"Welcome to SX-3000GB")) return true;
+if (asset.hasVulnWithResults(38007,"SX010203 login")) return true;
 
 
 
@@ -739,11 +867,30 @@ if (ssl_cert.contains("Splunk")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(86002,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38169,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38685,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38170,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38172,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38173,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38600,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(38167,"Super Micro Computer")) return true;
+if (asset.hasVulnWithResults(86002,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38169,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38685,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38170,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38172,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38173,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38600,"Super_Micro_Computer")) return true;
+if (asset.hasVulnWithResults(38167,"Super_Micro_Computer")) return true;
 
-if (asset.hasAnyVuln([11950])) return true;
+
+
+/* Trend Micro */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"Trend Micro")) return true;
 
 
 
@@ -769,4 +916,5 @@ if (ldap.contains("dc=vsphere,dc=local")) return true;
 ssl_cert = asset.resultsForQid(86002L);
 if (ssl_cert.contains("domainComponent vsphere") || ssl_cert.contains("vCenterServer") || ssl_cert.contains("VMware")) return true;
 
-if (asset.hasVulnWithResults(86565,"/configure/app/landing/index.html")) return false;
+if (asset.hasVulnWithResults(86565,"/configure/app/landing/index.html")) return true;
+if (asset.hasVulnWithResults(86383,"N7Vmacore4Http20NamedPipeServiceSpecE")) return true;
