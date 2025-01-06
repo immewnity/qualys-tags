@@ -85,11 +85,14 @@ if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 if (asset.hasVulnWithResults(12230,"ServerTech-AWS")) return true;
 if (asset.hasVulnWithResults(12230,"Sentry Switched")) return true;
 if (asset.hasVulnWithResults(13910,"ServerTech-AWS")) return true;
+if (asset.hasVulnWithResults(86001,"ServerTech-AWS")) return true;
 if (asset.hasVulnWithResults(13910,"Sentry Switched")) return true;
 if (asset.hasVulnWithResults(27113,"Sentry Switched")) return true;
 if (asset.hasVulnWithResults(78000,"Sentry Switched")) return true;
 if (asset.hasVulnWithResults(38007,"Sentry Switched")) return true;
 if (asset.hasVulnWithResults(43007,"00:0A:9C:")) return true;
+if (asset.hasVulnWithResults(38050,"ServerTech")) return true;
+if (asset.hasVulnWithResults(86002,"ServerTech Pro PDU")) return true;
 
 
 
