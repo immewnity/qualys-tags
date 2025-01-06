@@ -156,21 +156,14 @@ if (default_web_page.contains("HPE System Management") || default_web_page.conta
 
 
 
-/* Tridium Niagara / JACE 8000 IoT controller */
+/* Microchip SyncServer */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Default web page
-if (asset.hasVulnWithResults(12230,"Baja-Station-Brand") && asset.hasVulnWithResults(12230,"Niagara-HostId")) return true;
-
-// Redirected web page
-if (asset.hasVulnWithResults(13910,"Baja-Station-Brand") && asset.hasVulnWithResults(13910,"Niagara-HostId")) return true;
-
-// HTTP response method
-if (asset.hasVulnWithResults(48118,"Baja-Station-Brand") && asset.hasVulnWithResults(48118,"Niagara-HostId")) return true;
-
-// SSL certificate
-if (asset.hasVulnWithResults(86002,"Tridium") && asset.hasVulnWithResults(86002,"Niagara4")) return true;
+if (asset.hasVulnWithResults(12230,"Microchip - SyncServer")) return true;
+if (asset.hasVulnWithResults(13910,"Microchip - SyncServer")) return true;
+if (asset.hasVulnWithResults(86565,"Microchip - SyncServer")) return true;
+if (asset.hasVulnWithResults(12230,"mfcon.png")) return true;
 
 
 
@@ -280,6 +273,24 @@ if (admin.contains("Enhanced Scanning Technology")) return true;
 
 
 
+/* Tridium Niagara / JACE 8000 IoT controller */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Default web page
+if (asset.hasVulnWithResults(12230,"Baja-Station-Brand") && asset.hasVulnWithResults(12230,"Niagara-HostId")) return true;
+
+// Redirected web page
+if (asset.hasVulnWithResults(13910,"Baja-Station-Brand") && asset.hasVulnWithResults(13910,"Niagara-HostId")) return true;
+
+// HTTP response method
+if (asset.hasVulnWithResults(48118,"Baja-Station-Brand") && asset.hasVulnWithResults(48118,"Niagara-HostId")) return true;
+
+// SSL certificate
+if (asset.hasVulnWithResults(86002,"Tridium") && asset.hasVulnWithResults(86002,"Niagara4")) return true;
+
+
+
 /* Tyco iSTAR door controller (may flag on other Tyco/Sensormatic/Johnson Controls products) */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -294,6 +305,14 @@ if (asset.hasVulnWithResults(13910,"VideoEdge")) return false;
 if (asset.hasVulnWithResults(43007,"DIGITAL-LOGIC")) return false;
 if (asset.hasVulnWithResults(43007," 00:50:F9:")) return true;
 if (asset.hasVulnWithResults(86002,"iSTAR Ultra")) return true;
+if (asset.hasVulnWithResults(12230,"iuvweb_icon")) return true;
+if (asset.hasVulnWithResults(12230,"iSTARUltra_Icon_96x96")) return true;
+if (asset.hasVulnWithResults(12230,"istarClient")) return true;
+if (asset.hasVulnWithResults(12230,"iStarSettings")) return true;
+if (asset.hasVulnWithResults(13910,"iuvweb_icon")) return true;
+if (asset.hasVulnWithResults(13910,"iSTARUltra_Icon_96x96")) return true;
+if (asset.hasVulnWithResults(13910,"istarClient")) return true;
+if (asset.hasVulnWithResults(13910,"iStarSettings")) return true;
 
 
 
@@ -320,12 +339,12 @@ if (ssl_cert.contains("Veritas") && ssl_cert.contains("Appliance")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("VideoEdge")) return true;
+if (asset.hasVulnWithResults(12230,"VideoEdge")) return true;
 
 // Search the redirected default web page
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("VideoEdge")) return true;
+if (asset.hasVulnWithResults(13910,"VideoEdge")) return true;
+
+if (asset.hasVulnWithResults(86565,"/session/login/") && asset.hasVulnWithResults(86002,"Victor Unified Video Management")) return true;
 
 
 
