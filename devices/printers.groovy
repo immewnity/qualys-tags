@@ -211,7 +211,7 @@ if (asset.hasVulnWithResults(86002,"KONICA MINOLTA bizhub") || asset.hasVulnWith
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 // SNMP response
-if (asset.hasVulnWithResults(78000,"KYOCERA Document Solutions Printing System") || asset.hasVulnWithResults(78000,"KYOCERA Printer") || asset.hasVulnWithResults(78000,"IB-21E")) return true;
+if (asset.hasVulnWithResults(78000,"KYOCERA Document Solutions Printing System") || asset.hasVulnWithResults(78000,"KYOCERA Printer") || asset.hasVulnWithResults(78000,"IB-21E") || asset.hasVulnWithResults(78000,"KYOCERA MITA")) return true;
 
 // Search FTP response
 if (asset.hasVulnWithResults(27113,"TASKalfa") || asset.hasVulnWithResults(27113,"IB-21E") || asset.hasVulnWithResults(27113,"NS-30 Ver")) return true;
@@ -401,7 +401,7 @@ if (asset.hasVulnWithResults(78000,"Dell") && asset.hasVulnWithResults(78000,"La
 if (asset.hasVulnWithResults(78000,"Xerox WorkCentre")) return true;
 
 // MAC address
-if (asset.hasVulnWithResults(43007,"FUJI-XEROX") || (asset.hasVulnWithResults(43007,"XEROX CORPORATION") && !asset.hasVulnWithResults(43007,"00:00:00:00:00:00"))) return true;
+if (asset.hasVulnWithResults(43007,"FUJI-XEROX") || asset.hasVulnWithResults(43007,"FUJIFILM Business Innovation") || (asset.hasVulnWithResults(43007,"XEROX CORPORATION") && !asset.hasVulnWithResults(43007,"00:00:00:00:00:00"))) return true;
 
 if (asset.hasAnyVuln([45147,45149,45148])) return true;
 
