@@ -11,6 +11,15 @@
 
 
 
+/* Aiphone */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"AIPHONE")) return true;
+if (asset.hasVulnWithResults(38655,"AIPHONE")) return true;
+
+
+
 /* Accops */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -48,21 +57,11 @@ if (asset.hasVulnWithResults(43007,"00:22:EE:")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if (default_web_page.contains("AirTunes")) return true;
-
-// Search the web server version
-web_server = asset.resultsForQid(86000L);
-if (web_server.contains("AirTunes")) return true;
-
-// Search the web server pipelining
-pipelining = asset.resultsForQid(86565L);
-if (pipelining.contains("AirTunes")) return true;
-
-// Search the HTTP response method
-http_response = asset.resultsForQid(48118L);
-if (http_response.contains("AirTunes")) return true;
+if (asset.hasVulnWithResults(12230,"AirTunes")) return true;
+if (asset.hasVulnWithResults(86000,"AirTunes")) return true;
+if (asset.hasVulnWithResults(86565,"AirTunes")) return true;
+if (asset.hasVulnWithResults(48118,"AirTunes")) return true;
+if (asset.hasVulnWithResults(13910,"AirTunes")) return true;
 
 
 
@@ -197,12 +196,32 @@ if (ssl_cert.contains("support@axway.com")) return true;
 
 
 
+/* Barracuda Networks */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"Barracuda Networks")) return true;
+if (asset.hasVulnWithResults(13910,"Barracuda Networks, Inc")) return true;
+if (asset.hasVulnWithResults(86565,"support@barracuda.com")) return true;
+
+
+
 /* BeyondTrust */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasVulnWithResults(48118,"nsbase_session")) return true;
 if (asset.hasVulnWithResults(48118,"Set-Cookie: ns_s=")) return true;
+if (asset.hasVulnWithResults(12230,"pinned-remotesupport")) return true;
+if (asset.hasVulnWithResults(13910,"pinned-remotesupport")) return true;
+if (asset.hasVulnWithResults(48118,"pinned-remotesupport")) return true;
+if (asset.hasVulnWithResults(86565,"pinned-remotesupport")) return true;
+if (asset.hasVulnWithResults(12230,"BeyondTrust Corporation")) return true;
+if (asset.hasVulnWithResults(13910,"BeyondTrust Corporation")) return true;
+if (asset.hasVulnWithResults(86565,"BeyondTrust Corporation")) return true;
+if (asset.hasVulnWithResults(86002,"BeyondTrust")) return true;
+
+if (asset.hasAnyVuln([730326,48134,48277])) return true;
 
 
 
@@ -265,7 +284,7 @@ if (ike_service.contains("CheckPoint")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasAnyVuln([45306])) return false;
-
+if (asset.hasVulnWithResults(12230,"Redundant high-end Cisco Systems perimeter firewalls")) return false;
 if (asset.hasVulnWithResults(12230,"Cisco Unified IP Phone Cisco Communicator")) return false;
 if (asset.hasVulnWithResults(86565,"Cisco Unified IP Phone Cisco Communicator")) return false;
 if (asset.hasVulnWithResults(45331,"Cisco Unified IP Phone Cisco Communicator")) return false;
@@ -304,9 +323,13 @@ if (asset.hasVulnWithResults(86002,"TG SSL CA") || asset.hasVulnWithResults(8600
 // Search the SMTP banner
 if (asset.hasVulnWithResults(74042,"UnityMailer")) return true;
 
-if (asset.hasTag("Device: IP phone - Cisco")) return true;
+if (asset.hasVulnWithResults(12230,"url ='/webui';window.location.href=url;")) return true;
+if (asset.hasVulnWithResults(13910,"url ='/webui';window.location.href=url;")) return true;
+if (asset.hasVulnWithResults(38050,"SSH-2.0-Cisco-1.25")) return true;
+if (asset.hasVulnWithResults(86002,"IOS-Self-Signed-Certificate")) return true;
+if (asset.hasVulnWithResults(86001,"Cisco HTTP Server")) return true;
 
-if (asset.hasAnyVuln([38211,43001,13605,13811,13488,13662,38673,38667,42395,38250,45172,45566,106173])) return true;
+if (asset.hasAnyVuln([45635,45634,45633,45632,106203,38211,43001,13605,13811,13488,13662,38673,38667,42395,38250,45172,45566,106173])) return true;
 
 
 
@@ -334,6 +357,17 @@ if (asset.hasVulnWithResults(12230,"<span>NetScaler ADC</span>")) return true;
 if (asset.hasVulnWithResults(13910,"<span>NetScaler ADC</span>")) return true;
 if (asset.hasVulnWithResults(48118,"NSC_TEMP=xyz")) return true;
 if (asset.hasVulnWithResults(48118,"/logon/LogonPoint/tmindex.html")) return true;
+
+
+
+/* Continental Access */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(12230,"Continental Access")) return true;
+if (asset.hasVulnWithResults(12230,"/img/oem/cont/")) return true;
+if (asset.hasVulnWithResults(13910,"Continental Access")) return true;
+if (asset.hasVulnWithResults(13910,"/img/oem/cont/")) return true;
 
 
 
@@ -417,6 +451,8 @@ if (pipelining.contains("Server: BigIP") || pipelining.contains("/tmui/login.jsp
 http_response = asset.resultsForQid(48118L);
 if (http_response.contains("Server: BigIP") || http_response.contains("/tmui/login.jsp") || http_response.contains("Location: /tmui/login.jsp")) return true;
 
+if (asset.hasAllPortsOpen([4353,22,161,443])) return true;
+
 
 
 /* Forcepoint */
@@ -442,6 +478,14 @@ if (asset.hasAnyVuln([106199])) return true;
 
 if (asset.hasVulnWithResults(12230,"Warning: this page requires Javascript. To correctly view, please enable it in your browser.")) return true;
 if (asset.hasVulnWithResults(13910,"Warning: this page requires Javascript. To correctly view, please enable it in your browser.")) return true;
+
+
+
+/* Gemalto */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"Gemalto")) return true;
 
 
 
@@ -528,6 +572,22 @@ if (asset.hasVulnWithResults(86002,"IDEMIA")) return true;
 
 
 
+/* Ixia BreakingPoint */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"bpointsys")) return true;
+
+
+
+/* Johnson Controls */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"jci.com")) return true;
+
+
+
 /* Juniper Networks */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -563,6 +623,14 @@ if (asset.hasVulnWithResults(12230,"ltx_conf")) return true;
 if (asset.hasVulnWithResults(78000,"Lantronix")) return true;
 if (asset.hasVulnWithResults(78000,"V6.1.0.1") && asset.hasVulnWithResults(78000,"060120")) return true;
 if (asset.hasVulnWithResults(78000,"V6.10.0.3") && asset.hasVulnWithResults(78000,"171229")) return true;
+
+
+
+/* Lenel */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,"O=Lenel")) return true;
 
 
 
@@ -624,6 +692,7 @@ if (asset.hasVulnWithResults(48118,"UnifiedManager")) return true;
 if (asset.hasVulnWithResults(38660,".com.netapp:")) return true;
 if (asset.hasVulnWithResults(86002,"UnifiedManager")) return true;
 if (asset.hasVulnWithResults(86002,"NetApp Data Broker")) return true;
+if (asset.hasVulnWithResults(86002,"NetApp TLV")) return true;
 
 if (asset.hasAnyVuln([62044,11956,38762,38758,38749,38753])) return true;
 
@@ -671,7 +740,7 @@ if (asset.hasVulnWithResults(730096,"Oracle ESBC")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if (asset.hasAnyVuln([45602])) return true;
+if (asset.hasAnyVuln([45602,48198])) return true;
 
 // Search the default web page
 default_web_page = asset.resultsForQid(12230L);
@@ -681,11 +750,8 @@ if (default_web_page.contains("Location: /php/login.php")) return true;
 redirected_web_page = asset.resultsForQid(13910L);
 if (redirected_web_page.contains("Creating administrative session. Please wait") || redirected_web_page.contains("logo-pan-") || redirected_web_page.contains("PAN_FORM_CONTENT")) return true;
 
-// Search the SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("organizationName Palo Alto") || ssl_cert.contains("paloaltonetworks.com")) return true;
-
-if (asset.hasAnyVuln([48198])) return true;
+if (asset.hasVulnWithResults(86002,"Palo Alto Networks")) return true;
+if (asset.hasVulnWithResults(86002,"paloaltonetworks")) return true;
 
 
 
@@ -849,18 +915,11 @@ if (asset.hasAnyVuln([730122,375410,13995,10369,370319,13224,12670,87157])) retu
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Search the default web page after redirect
-default_web_page = asset.resultsForQid(13910L);
-if (default_web_page.contains("splunk-phantom-logo") || (default_web_page.contains("/en-US/") && default_web_page.contains("The resource has moved temporarily"))) return true;
-
-// Search HTTP header
-http_header = asset.resultsForQid(48118L);
-if (http_header.contains("Splunkd")) return true;
-
-// Search SSL cert
-ssl_cert = asset.resultsForQid(86002L);
-if (ssl_cert.contains("Splunk")) return true;
-
+if (asset.hasVulnWithResults(13910,"splunk-phantom-logo")) return true;
+if ((asset.hasVulnWithResults(13910,"/en-US/") && asset.hasVulnWithResults(13910,"The resource has moved temporarily"))) return true;
+if (asset.hasVulnWithResults(48118,"Splunkd")) return true;
+if (asset.hasVulnWithResults(86002,"Splunk")) return true;
+if (asset.hasVulnWithResults(86002,"splunkcloud")) return true;
 
 
 /* Super Micro */
@@ -891,6 +950,16 @@ if (asset.hasVulnWithResults(38167,"Super_Micro_Computer")) return true;
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
 if (asset.hasVulnWithResults(86002,"Trend Micro")) return true;
+
+
+
+/* Valcom */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(38443,"Valcom")) return true;
+if (asset.hasVulnWithResults(38438,"Valcom")) return true;
+if (asset.hasVulnWithResults(38435,"Valcom")) return true;
 
 
 
