@@ -10,6 +10,12 @@
  */
 
 
+/* Bria Softphone */
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+if (asset.hasVulnWithResults(86002,".softphone.com")) return true;
+
+
 
 /* Cisco Unity Connection */
 
@@ -92,6 +98,7 @@ if (smtp_banner.contains("NT-ESMTP Server X1")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
+if(asset.hasAnyVuln([45629])) return true;
 if (asset.hasVulnWithResults(12230,"__CMSCsrfToken")) return true;
 if (asset.hasVulnWithResults(12230,"CMSPages")) return true;
 if (asset.hasVulnWithResults(12230,"this error is probably caused by cross-domain access")) return true;
@@ -116,27 +123,31 @@ if (asset.hasVulnWithResults(150247,"Kentico CMS")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-// Yes
-if(asset.hasAnyVuln([74166,105016,105414,105557,105711,74152,74154,74155,105205,74156,50098,74157,74206,74232,74261,74256,74263,74266,74255,74267,121445,74158,74159,74160,74164,105888,105889,105890,50107,50108,50109])) return true;
+if(asset.hasAnyVuln([50127,50126,50133,50130,50129,50134,74166,105016,105414,50122,105557,105711,74152,74154,74155,105205,74156,50098,74157,74206,74232,74261,74256,74263,74266,74255,74267,121445,74158,74159,74160,74164,105888,105889,105890,50107,50108,50109])) return true;
 
-// No
+if (asset.hasVulnWithResults(90235,"4934D1EA-BE46-48B1-8847-F1AF20E892C1")) return true;
+if (asset.hasVulnWithResults(90235,"CD981244-E9B8-405A-9026-6AEB9DCEF1F1")) return true;
+if (asset.hasVulnWithResults(45520,"4934D1EA-BE46-48B1-8847-F1AF20E892C1")) return true;
+if (asset.hasVulnWithResults(45520,"CD981244-E9B8-405A-9026-6AEB9DCEF1F1")) return true;
+
+if (asset.hasVulnWithResults(50000,"The Microsoft Exchange POP3 service")) return true;
+if (asset.hasVulnWithResults(45472,"MSExchangeFrontendTransport")) return true;
+if (asset.hasVulnWithResults(45414,"MSExchangeFrontendTransport")) return true;
+
 if(asset.hasAnyVuln([43188])) return false;
 
-// Search the default web page
-default_web_page = asset.resultsForQid(12230L);
-if ((default_web_page.contains("/owa/") || default_web_page.contains("/OWA/") || default_web_page.contains("/Owa/") || default_web_page.contains("X-FEServer")) && default_web_page.contains("Microsoft-IIS")) return true;
-
-// Search the redirected default web page
-redirected_web_page = asset.resultsForQid(13910L);
-if ((redirected_web_page.contains("/owa/") || redirected_web_page.contains("/OWA/") || redirected_web_page.contains("/Owa/") || redirected_web_page.contains("X-FEServer")) && redirected_web_page.contains("Microsoft-IIS")) return true;
-
-// HTTP response method
-http_method = asset.resultsForQid(48118L);
-if ((http_method.contains("/owa") || http_method.contains("/OWA") || http_method.contains("/Owa") || http_method.contains("X-FEServer")) && http_method.contains("Microsoft-IIS")) return true;
-
-// Directories exist
-directories_exist = asset.resultsForQid(86672L);
-if ((directories_exist.contains("/OWA/") || directories_exist.contains("/owa/") || directories_exist.contains("/Owa/")) && !(directories_exist.contains("/invisionboard/") || directories_exist.contains("phpmynewsletter") || directories_exist.contains("postnuke") || directories_exist.contains("phpnuke") || directories_exist.contains("phpShare") || directories_exist.contains("mediawiki") || directories_exist.contains("zencart") || directories_exist.contains("WebCalendar") || directories_exist.contains("zeroboard") || directories_exist.contains("phpmyadmin") || directories_exist.contains("awstats") || directories_exist.contains("yapig") || directories_exist.contains("tomatocart") || directories_exist.contains("seopanel") || directories_exist.contains("zpanel") || directories_exist.contains("phpwebthings") || directories_exist.contains("jscripts") || directories_exist.contains("drupal") || directories_exist.contains("coregui") || directories_exist.contains("owa/auth"))) return true;
+if (asset.hasVulnWithResults(12230,"Management by Central")) return false;
+if (asset.hasVulnWithResults(12230,"arubanetworks")) return false;
+if (asset.hasVulnWithResults(12230,"tinyproxy")) return false;
+if (asset.hasVulnWithResults(13910,"Management by Central")) return false;
+if (asset.hasVulnWithResults(13910,"arubanetworks")) return false;
+if (asset.hasVulnWithResults(13910,"tinyproxy")) return false;
+if (asset.hasVulnWithResults(48118,"Management by Central")) return false;
+if (asset.hasVulnWithResults(48118,"arubanetworks")) return false;
+if (asset.hasVulnWithResults(48118,"tinyproxy")) return false;
+if ((asset.hasVulnWithResults(12230,"/owa/") || asset.hasVulnWithResults(12230,"/OWA/") || asset.hasVulnWithResults(12230,"/Owa/") || asset.hasVulnWithResults(12230,"X-FEServer")) && asset.hasVulnWithResults(12230,"Microsoft-IIS")) return true;
+if ((asset.hasVulnWithResults(13910,"/owa/") || asset.hasVulnWithResults(13910,"/OWA/") || asset.hasVulnWithResults(13910,"/Owa/") || asset.hasVulnWithResults(13910,"X-FEServer")) && asset.hasVulnWithResults(13910,"Microsoft-IIS")) return true;
+if ((asset.hasVulnWithResults(48118,"/owa") || asset.hasVulnWithResults(48118,"/OWA") || asset.hasVulnWithResults(48118,"/Owa") || asset.hasVulnWithResults(48118,"X-FEServer")) && asset.hasVulnWithResults(48118,"Microsoft-IIS")) return true;
 
 
 
