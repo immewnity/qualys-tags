@@ -10,6 +10,18 @@
  */
 
 
+/* AlmaLinux */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+// Detect Linux version
+if (asset.hasVulnWithResults(45353,"almalinux.org")) return true;
+
+// Yum repo list
+if (asset.hasVulnWithResults(45294,"name=AlmaLinux")) return true;
+
+
+
 /* Amazon Linux */
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
@@ -22,7 +34,7 @@ if (linux_version.contains("amzn2")) return true;
 yum_repos = asset.resultsForQid(45294L);
 if (yum_repos.contains("amzn2-core") || yum_repos.contains("Amazon Linux") || yum_repos.contains("managed with amazon-linux-extras")) return true;
 
-if (asset.hasAnyVuln([352855])) return true;
+if (asset.hasAnyVuln([352855,106213])) return true;
 
 
 
@@ -77,7 +89,7 @@ if (asset.hasVulnWithResults(38293,"FreeBSD")) return true;
 
 if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
 
-if (asset.hasAnyVuln([43566,43110,375113,45072,45238,374668,373187,374335,375114,373498,374919,45542,45558])) return true;
+if (asset.hasAnyVuln([45620,43566,43110,375113,45072,45238,374668,373187,374335,375114,373498,374919,45542,45558])) return true;
 
 if (asset.hasVulnWithResults(38062,"RFB 003.889")) return true;
 
@@ -159,7 +171,7 @@ if (linux_version.contains("redhat.com")) return true;
 yum_repos = asset.resultsForQid(45294L);
 if (yum_repos.contains("Red Hat Enterprise Linux") || yum_repos.contains("Managed by (rhsm) subscription-manager")) return true;
 
-if (asset.hasAnyVuln([239506,239541,239467,239535,239540,375544,239539,239546,239524,239534,239403,239339,239379,239202])) return true;
+if (asset.hasAnyVuln([106238,106237,106236,239506,239541,239467,239535,239540,375544,239539,239546,239524,239534,239403,239339,239379,239202])) return true;
 
 if (asset.hasVulnWithResults(38007,"Red Hat Linux release")) return true;
 
