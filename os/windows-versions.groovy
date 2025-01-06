@@ -262,3 +262,16 @@ String Win11BuildNo = "22631";
 // Windows Product Type
 win_prod_type = asset.resultsForQid(90107L);
 if (win_prod_type.contains("CurrentBuildNumber = " + Win11BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
+
+
+
+/* Windows version 24H2 */
+
+if(asset.getAssetType()!=Asset.AssetType.HOST) return false;
+
+String DisplayVersion = "24H2";
+String Win11BuildNo = "26100";
+
+// Windows Product Type
+win_prod_type = asset.resultsForQid(90107L);
+if (win_prod_type.contains("CurrentBuildNumber = " + Win11BuildNo) || win_prod_type.contains("DisplayVersion = " + DisplayVersion)) return true;
