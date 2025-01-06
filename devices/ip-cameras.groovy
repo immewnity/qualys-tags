@@ -81,8 +81,9 @@ if (asset.hasVulnWithResults(12230,"lgnLocalStorageGet") || asset.hasVulnWithRes
 // Search the redirected default web page
 if (asset.hasVulnWithResults(13910,"lgnLocalStorageGet") || asset.hasVulnWithResults(13910,"randomish number that can be added to URLS") || asset.hasVulnWithResults(13910,"url=/guest/main.html") || asset.hasVulnWithResults(13910,"below field is just to fake browser not to autofill values")) return true;
 
-// Search the SSL certificate
 if (asset.hasVulnWithResults(82002,"Tyco Security Products")) return true;
+if (asset.hasVulnWithResults(38050,"SSH-2.0-dropbear 2022.82")) return true;
+if (asset.hasVulnWithResults(86002,"Victorunifiedvideomanagement")) return true;
 
 
 
@@ -110,6 +111,7 @@ if (asset.hasVulnWithResults(13910,"home/monitoring.cgi")) return true;
 
 if (asset.hasVulnWithResults(12230,"/wmf/index.html")) return true;
 if (asset.hasVulnWithResults(13910,"/wmf/index.html")) return true;
+if (asset.hasVulnWithResults(86565,"/wmf/index.html")) return true;
 
 
 
